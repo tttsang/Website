@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>首页图片上传</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <base href="http://bingexxx.net/" />
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <!-- 单文件上传 -->
+        <div class="input-group">
+            <span class="input-group-addon">教授名称: </span>
+            <input type="text" class="form-control" id="name" value="">
+        </div>
+        <input type="file" id="file1" name="file" accept="image/*">
+        <button type="button" class="btn btn-info" id="preview_btn">图片预览</button>
+        <button type="button" class="btn btn-info" id="addPicture">添加图片</button>
+        <img src="" id="preViewImage" />
+        <div class="hr"></div>
+    </div>
+
+    <script>
+        // 图片预览
+        $(function () {
+            $("#preview_btn").click(function () {
+                var file = new FormData();
+                file.append("file", $('#file1')[0].files[0]);
+                console.log(file)
+                $.ajax({
+                    type: 'Post',
+                    url: 'api/indexProfessor/preview',
+                    data: file,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (data) {
+                        alert(JSON.stringify(data))
+                        console.log(data)
+                        $("#preViewImage").attr("src", data.data);
+                    },
+                    error: function (data) {
+                        alert(JSON.stringify(data))
+                        console.log(data)
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true
+                });
+            })
+
+        })
+
+        // 图片上传
+        $(function () {
+            $("#addPicture").click(function () {
+                var file = new FormData();
+                file.append("file", $('#file1')[0].files[0]);
+                file.append("name",$('#name').val());
+                console.log(file)
+                $.ajax({
+                    type: 'Post',
+                    url: 'api/indexProfessor/',
+                    data: file,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function (data) {
+                        alert(JSON.stringify(data))
+                        console.log(data)
+                        $("#preViewImage").attr("src", data.data);
+                    },
+                    error: function (data) {
+                        alert(JSON.stringify(data))
+                        console.log(data)
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true
+                });
+            })
+
+        })
+    </script>
+
+    <style>
+        .hr {
+            height: 3px;
+            background: #333333;
+            margin: 10px 0;
+        }
+
+        #preViewImage {
+            display: block;
+        }
+    </style>
+</body>
+
+</html>
