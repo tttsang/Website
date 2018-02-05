@@ -1,7 +1,6 @@
 package com.jking.computersite.exception;
 
 import com.jking.computersite.enums.BaseEnums;
-import com.jking.computersite.enums.UserEnums;
 
 public class MyException extends RuntimeException {
 
