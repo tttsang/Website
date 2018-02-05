@@ -1,6 +1,0 @@
-2018-02-05 14:24:26.815  INFO 11068 --- [restartedMain] c.j.c.ComputersiteApplication            : Starting ComputersiteApplication on DESKTOP-HJJ8BTH with PID 11068 (E:\computersite\target\classes started by bin in E:\computersite)
-2018-02-05 14:24:26.815  INFO 11068 --- [restartedMain] c.j.c.ComputersiteApplication            : No active profile set, falling back to default profiles: default
-2018-02-05 14:24:29.993  INFO 11068 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2018-02-05 14:24:29.993  INFO 11068 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.16
-2018-02-05 14:24:30.118  INFO 11068 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2018-02-05 14:24:33.050  INFO 11068 --- [restartedMain] c.j.c.ComputersiteApplication            : Started ComputersiteApplication in 6.954 seconds (JVM running for 8.936)
