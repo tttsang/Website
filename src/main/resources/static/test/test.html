@@ -16,9 +16,11 @@
         <button type="button" class="btn btn-info" id="preview_btn">word文档预览</button>
         <img src="" id="preViewImage" />
         <div class="hr"></div>
-        <iframe src="">
-            <p>您的浏览器不支持 iframe 标签。</p>
-        </iframe>
+        <div id="iframeWrap">
+            <iframe src="">
+                <p>您的浏览器不支持 iframe 标签。</p>
+            </iframe>
+        </div>
     </div>
 
     <script>
@@ -73,13 +75,18 @@
         #preViewImage {
             display: block;
         }
-        iframe{
+        #iframeWrap{
             width: 80%;
-            height: 500px;
+            height: 750px;
             margin: 0 auto;
             display: block;
-            border: #333333;
-            
+            border: 2px solid #333333;
+            overflow: hidden;
+        }
+        iframe{
+            width: 105%;
+            border: none;
+            height: 100%;
         }
     </style>
 </body>

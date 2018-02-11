@@ -17,7 +17,7 @@ public class CommonController {
     @ResponseBody
     @PostMapping("/preview")
     public ResultVO preview(@RequestParam("file") MultipartFile file){
-        String extension = FileUtil.isDoc(file);
+        String extension = FileUtil.isImage(file);
         String filePath = UploadConstant.IMAGEPREVIEW + UUID.randomUUID() + "." +extension;
         try {
             File[] files = new File(UploadConstant.PUBLIC +UploadConstant.IMAGEPREVIEW).listFiles();

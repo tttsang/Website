@@ -38,7 +38,7 @@
             $("#preview_btn").click(function () {
                 var data = new FormData();
                 data.append("file", $('#file')[0].files[0]);
-                MyAjax('Post','preview',data,function(res){
+                MyAjax('Post','api/preview',data,function(res){
                     $("#preViewImage").attr("src", res.data);
                 });
             })
