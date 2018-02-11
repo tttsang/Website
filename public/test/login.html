@@ -33,7 +33,7 @@
             $("#login_btn").click(function () {
                 $.ajax({
                     type: 'Post',
-                    url: 'api/login',
+                    url: 'login',
                     data: {
                         id: $("#id").val(),
                         password: $("#password").val()
@@ -55,7 +55,7 @@
             $("#logout_btn").click(function(){
                 $.ajax({
                     type: 'get',
-                    url: 'api/logout',
+                    url: 'logout',
                     success: function (res) {
                         alert(JSON.stringify(res))
                         console.log(res)

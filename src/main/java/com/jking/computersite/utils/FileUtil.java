@@ -1,6 +1,7 @@
 package com.jking.computersite.utils;
 
 import com.jking.computersite.constant.UploadConstant;
+import com.jking.computersite.enums.CommonEnums;
 import com.jking.computersite.enums.IndexProfessorEums;
 import com.jking.computersite.exception.MyException;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,12 +22,29 @@ public class FileUtil {
                     && !extension.equalsIgnoreCase("GIF")
                     && !extension.equalsIgnoreCase("JPEG")
                     && !extension.equalsIgnoreCase("BMP")){
-                throw new MyException(IndexProfessorEums.ONLY_PICTURE);
+                throw new MyException(CommonEnums.ONLY_PICTURE);
             }else {
                 return extension;
             }
         }else {
-            throw new MyException(IndexProfessorEums.ONLY_PICTURE);
+            throw new MyException(CommonEnums.ONLY_PICTURE);
+        }
+
+    }
+
+    public static String isDoc(MultipartFile file){
+        String extension;
+        int i = file.getOriginalFilename().lastIndexOf('.');
+        if (i > 0) {
+            extension = file.getOriginalFilename().substring(i+1);
+            if (!extension.equalsIgnoreCase("DOC")
+                    && !extension.equalsIgnoreCase("DOCX")){
+                throw new MyException(CommonEnums.ONLY_Doc);
+            }else {
+                return extension;
+            }
+        }else {
+            throw new MyException(CommonEnums.ONLY_Doc);
         }
 
     }

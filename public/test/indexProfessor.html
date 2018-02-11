@@ -48,12 +48,12 @@
                 var data = new FormData();
                 data.append("file", $('#file')[0].files[0]);
                 data.append("name", $('#name').val());
-                MyAjax('Post','api/indexProfessor/',data);
+                MyAjax('Post','indexProfessor/',data);
             })
 
             // 获取所有
             $("#getAll").click(function () {
-                MyAjax('Get','api/indexProfessor/getAll');
+                MyAjax('Get','indexProfessor/getAll');
             })
 
             // 更新
@@ -61,13 +61,13 @@
                 var data = new FormData();
                 data.append("file", $('#file')[0].files[0]);
                 data.append("name", $('#name').val());
-                var url = 'api/indexProfessor/' + $("#id").val();
+                var url = 'indexProfessor/' + $("#id").val();
                 MyAjax('Put',url,data);
             })
 
             // 删除
             $("#delete").click(function () {
-                var url = 'api/indexProfessor/' + $("#id").val();
+                var url = 'indexProfessor/' + $("#id").val();
                 MyAjax('Delete',url);
             })
 

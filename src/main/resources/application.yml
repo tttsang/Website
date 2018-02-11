@@ -2,6 +2,10 @@ server:
   port: 8080
 
 spring:
+    http:
+        multipart:
+            maxFileSize: 100Mb
+            maxRequestSize: 1000Mb
     datasource:
         url: jdbc:mysql://127.0.0.1:3306/computersite
         username: root

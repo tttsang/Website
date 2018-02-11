@@ -37,7 +37,7 @@ public class IndexProfessorController {
         String extension = FileUtil.isImage(file);
         String filePath = UploadConstant.INDEXPROFESSOR + UUID.randomUUID() + "." +extension;
         //保存图片
-        FileUtil.saveFile(file,UploadConstant.TYPE + filePath);
+        FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);
         //保存到数据库
         IndexProfessor indexProfessor = new IndexProfessor();
         indexProfessor.setName(name);
@@ -58,8 +58,8 @@ public class IndexProfessorController {
         if (file!=null && !file.isEmpty()){
             FileUtil.isImage(file);
             String filePath = indexProfessor_sql.getPictureurl();
-            FileUtil.deleteFile(UploadConstant.TYPE + filePath);
-            FileUtil.saveFile(file,UploadConstant.TYPE + filePath);
+            FileUtil.deleteFile(UploadConstant.PUBLIC + filePath);
+            FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);
         }
         IndexProfessor indexProfessor = new IndexProfessor();
         indexProfessor.setName(name);
@@ -73,7 +73,7 @@ public class IndexProfessorController {
     @DeleteMapping("/{id}")
     public ResultVO delete(@PathVariable Integer id){
         IndexProfessor indexProfessor_sql = indexProfessorService.find(id);
-        FileUtil.deleteFile(UploadConstant.TYPE + indexProfessor_sql.getPictureurl());
+        FileUtil.deleteFile(UploadConstant.PUBLIC + indexProfessor_sql.getPictureurl());
         indexProfessorService.delete(id);
         return ResultVOUtil.success();
     }
