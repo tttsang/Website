@@ -95,7 +95,7 @@ public class PoiUtil {
                 // 存放图片的文件夹
                 options.setExtractor(new FileImageExtractor(new File(dir_path + "images/")));
                 // html中图片的路径
-                options.URIResolver(new BasicURIResolver("image"));
+                options.URIResolver(new BasicURIResolver(dir_path + "images/"));
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(dir_path + "article.html"), "utf-8");
                 XHTMLConverter xhtmlConverter = (XHTMLConverter) XHTMLConverter.getInstance();
                 xhtmlConverter.convert(document, outputStreamWriter, options);
