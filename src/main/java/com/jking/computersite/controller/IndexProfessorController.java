@@ -1,6 +1,6 @@
 package com.jking.computersite.controller;
 
-import com.jking.computersite.Service.IndexProfessorService;
+import com.jking.computersite.service.IndexProfessorService;
 import com.jking.computersite.VO.ResultVO;
 import com.jking.computersite.constant.UploadConstant;
 import com.jking.computersite.entity.IndexProfessor;
@@ -34,7 +34,8 @@ public class IndexProfessorController {
             throw new MyException(IndexProfessorEums.NAME_NOT_FOUND);
         }
         System.out.println(name);
-        String extension = FileUtil.isImage(file);
+        String extension = FileUtil.getExtension(file);
+        FileUtil.isImage(file);
         String filePath = UploadConstant.INDEXPROFESSOR + UUID.randomUUID() + "." +extension;
         //保存图片
         FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);

@@ -1,6 +1,6 @@
 package com.jking.computersite.controller;
 
-import com.jking.computersite.Service.UserService;
+import com.jking.computersite.service.UserService;
 import com.jking.computersite.VO.ResultVO;
 import com.jking.computersite.constant.CookieConstant;
 import com.jking.computersite.constant.RedisConstant;

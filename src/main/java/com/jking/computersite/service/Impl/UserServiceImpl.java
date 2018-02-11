@@ -1,6 +1,6 @@
-package com.jking.computersite.Service.Impl;
+package com.jking.computersite.service.Impl;
 
-import com.jking.computersite.Service.UserService;
+import com.jking.computersite.service.UserService;
 import com.jking.computersite.entity.User;
 import com.jking.computersite.enums.UserEnums;
 import com.jking.computersite.exception.MyException;

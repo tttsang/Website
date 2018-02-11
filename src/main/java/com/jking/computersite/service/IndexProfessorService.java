@@ -1,7 +1,6 @@
-package com.jking.computersite.Service;
+package com.jking.computersite.service;
 
 import com.jking.computersite.entity.IndexProfessor;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

@@ -17,15 +17,10 @@ public class CommonController {
     @ResponseBody
     @PostMapping("/preview")
     public ResultVO preview(@RequestParam("file") MultipartFile file){
-        String extension = FileUtil.isImage(file);
-        String filePath = UploadConstant.IMAGEPREVIEW + UUID.randomUUID() + "." +extension;
+        FileUtil.isImage(file);
+        String filePath = UploadConstant.IMAGEPREVIEW + file.getOriginalFilename();
         try {
-            File[] files = new File(UploadConstant.PUBLIC +UploadConstant.IMAGEPREVIEW).listFiles();
-            if (files != null){
-                for (File file_del : files){
-                    file_del.delete();
-                }
-            }
+            FileUtil.delAllFile(UploadConstant.PUBLIC + UploadConstant.IMAGEPREVIEW);
             FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);
         }catch (Exception e){
             e.printStackTrace();
@@ -36,8 +31,7 @@ public class CommonController {
     @ResponseBody
     @PostMapping("/previewDoc")
     public ResultVO previewDoc(@RequestParam("file") MultipartFile file){
-        FileUtil.isDoc(file);
-        return ResultVOUtil.success(PoiUtil.saveDoc(file));
+        return ResultVOUtil.success(PoiUtil.previewDoc(file));
     }
 
 }

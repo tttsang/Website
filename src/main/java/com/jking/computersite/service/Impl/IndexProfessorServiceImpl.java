@@ -1,6 +1,6 @@
-package com.jking.computersite.Service.Impl;
+package com.jking.computersite.service.Impl;
 
-import com.jking.computersite.Service.IndexProfessorService;
+import com.jking.computersite.service.IndexProfessorService;
 import com.jking.computersite.entity.IndexProfessor;
 import com.jking.computersite.enums.IndexProfessorEums;
 import com.jking.computersite.exception.MyException;

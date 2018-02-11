@@ -1,6 +1,8 @@
 package com.jking.computersite.utils;
 
 import com.jking.computersite.constant.UploadConstant;
+import com.jking.computersite.enums.CommonEnums;
+import com.jking.computersite.exception.MyException;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.converter.WordToHtmlConverter;
 import org.apache.poi.xwpf.converter.core.BasicURIResolver;
@@ -24,38 +26,67 @@ import java.util.Date;
 public class PoiUtil {
     public static String saveDoc(MultipartFile file){
         String fileName = file.getOriginalFilename();
-        System.out.println(fileName);
         String filePre = fileName.split("\\.")[0];
-        String extension = fileName.split("\\.")[1];
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");
         String date = simpleDateFormat.format(new Date());
 
         String dir_path = UploadConstant.PUBLIC + UploadConstant.ARTICLE + date + "/";
         String htmlPath = UploadConstant.ARTICLE + date + "/";
 
-        boolean off = true;
-        while (off){
-            off = false;
+        while (true){
             File[] files = new File(dir_path).listFiles();
             StringBuilder sb = new StringBuilder(filePre);
             if (files != null) {
                 for (File fileDir : files) {
                     String fileDirName = fileDir.getName();
-                    System.out.println(fileDirName);
                     if (filePre.equals(fileDirName)) {
-                        sb.append((int) (Math.random() * 1000));
-                        off = true;
+                        sb.append("-"+(int) (Math.random() * 1000));
                         break;
                     }
                 }
-                dir_path += sb.toString() + "/";
-                htmlPath += sb.toString() + "/";
             }
+            System.out.println(sb.toString());
+            dir_path += sb.toString() + "/";
+            htmlPath += sb.toString() + "/";
+            break;
         }
 
         String path = dir_path + fileName;
-        System.out.println(dir_path);
         try {
+            FileUtil.saveFile(file,path);
+            save(file,dir_path);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return htmlPath;
+    }
+
+    public static String previewDoc(MultipartFile file){
+        FileUtil.isDoc(file);
+        String dir_path = UploadConstant.PUBLIC + UploadConstant.WORDPREVIEW;
+        FileUtil.delAllFile(UploadConstant.PUBLIC + UploadConstant.WORDPREVIEW);
+        save(file,dir_path);
+        return UploadConstant.WORDPREVIEW + "article.html";
+    }
+
+    public static void delDoc(String path){
+        FileUtil.delFolder(UploadConstant.PUBLIC + path);
+    }
+
+    public static String getDoc(String path){
+        File file = new File(UploadConstant.PUBLIC + path);
+        if (!file.exists()){
+            throw new MyException(CommonEnums.FILE_NOT_FOUND);
+        }
+        return path + "article.html";
+    }
+
+    public static void save(MultipartFile file,String dir_path){
+        try {
+            String fileName = file.getOriginalFilename();
+            String path = dir_path + fileName;
+            String extension = fileName.split("\\.")[1];
             File dir = new File(dir_path);
             if (!dir.exists()){
                 dir.mkdirs();
@@ -69,6 +100,10 @@ public class PoiUtil {
                 WordToHtmlConverter wordToHtmlConverter = new WordToHtmlConverter(document);
                 // 保存图片，并返回图片的相对路径
                 String imagePathStr = dir_path + "images/";
+                File imagesDir = new File(imagePathStr);
+                if (!imagesDir.exists()){
+                    imagesDir.mkdirs();
+                }
                 wordToHtmlConverter.setPicturesManager((content, pictureType, name, width, height) -> {
                     try (FileOutputStream out = new FileOutputStream(imagePathStr + name)) {
                         out.write(content);
@@ -95,18 +130,15 @@ public class PoiUtil {
                 // 存放图片的文件夹
                 options.setExtractor(new FileImageExtractor(new File(dir_path + "images/")));
                 // html中图片的路径
-                options.URIResolver(new BasicURIResolver(dir_path + "images/"));
+                options.URIResolver(new BasicURIResolver("images/"));
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(dir_path + "article.html"), "utf-8");
                 XHTMLConverter xhtmlConverter = (XHTMLConverter) XHTMLConverter.getInstance();
                 xhtmlConverter.convert(document, outputStreamWriter, options);
                 outputStreamWriter.close();
             }
-
         }catch (Exception e){
             e.printStackTrace();
         }
-
-        return htmlPath + "article.html";
     }
 
 }

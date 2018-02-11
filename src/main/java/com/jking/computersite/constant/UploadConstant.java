@@ -8,8 +8,10 @@ public interface UploadConstant {
 
     String INDEXPROFESSOR = "images/IndexProfessor/";
 
-    String IMAGEPREVIEW = "temp/";
+    String IMAGEPREVIEW = "temp/images/";
 
     String ARTICLE = "article/";
+
+    String WORDPREVIEW = "temp/word/";
 
 }

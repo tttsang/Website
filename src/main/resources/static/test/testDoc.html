@@ -12,9 +12,15 @@
 <body>
 
     <div>
+        <!-- <div class="input-group">
+            <span class="input-group-addon">path: </span>
+            <input type="text" class="form-control" id="path" value="">
+        </div> -->
         <input type="file" id="file" name="file">
         <button type="button" class="btn btn-info" id="preview_btn">word文档预览</button>
-        <img src="" id="preViewImage" />
+        <!-- <button type="button" class="btn btn-info" id="preview_save">word文档保存</button>
+        <button type="button" class="btn btn-info" id="preview_del">word文档删除</button>
+        <button type="button" class="btn btn-info" id="preview_get">word文档获取</button> -->
         <div class="hr"></div>
         <div id="iframeWrap">
             <iframe src="">
@@ -31,9 +37,26 @@
                 var data = new FormData();
                 data.append("file", $('#file')[0].files[0]);
                 MyAjax('Post', 'api/previewDoc', data, function (res) {
-                    console.log(res.data);
-                    $("iframe").attr("src",res.data);
+                    $("iframe").attr("src", res.data);
                 });
+            })
+
+            $("#preview_save").click(function () {
+                var data = new FormData();
+                data.append("file", $('#file')[0].files[0]);
+                MyAjax('Post', 'api/saveDoc', data);
+            })
+
+            $("#preview_del").click(function () {
+                var data = new FormData();
+                data.append("path",$("#path").val());
+                MyAjax('Post', 'api/delDoc', data);
+            })
+
+            $("#preview_get").click(function () {
+                var data = new FormData();
+                data.append("path",$("#path").val());
+                MyAjax('Post', 'api/getDoc', data);
             })
 
         })
@@ -75,7 +98,8 @@
         #preViewImage {
             display: block;
         }
-        #iframeWrap{
+
+        #iframeWrap {
             width: 80%;
             height: 750px;
             margin: 0 auto;
@@ -83,7 +107,8 @@
             border: 2px solid #333333;
             overflow: hidden;
         }
-        iframe{
+
+        iframe {
             width: 105%;
             border: none;
             height: 100%;
