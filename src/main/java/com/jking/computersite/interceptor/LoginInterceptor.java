@@ -1,4 +1,4 @@
-package com.jking.computersite.aspect;
+package com.jking.computersite.interceptor;
 
 import com.jking.computersite.constant.CookieConstant;
 import com.jking.computersite.constant.RedisConstant;
@@ -6,45 +6,39 @@ import com.jking.computersite.enums.UserEnums;
 import com.jking.computersite.exception.MyException;
 import com.jking.computersite.utils.CookieUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.stereotype.Component;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.util.StringUtils;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * 1. 要在状态码为200时才进入该页面
- */
-@Aspect
-@Component
 @Slf4j
-public class LoginAspect {
+public class LoginInterceptor implements HandlerInterceptor {
 
     @Autowired
     private StringRedisTemplate redisTemplate;
 
-    @Before("execution(public * com.jking.computersite.controller.*.*(..))")
-    public void login(){
-
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+            throws Exception {
         //1. 得到HttpServletRequest对象
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        HttpServletResponse response = attributes.getResponse();
         response.setHeader("Access-Control-Allow-Origin", "null");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Expose-Headers", "Set-Cookie");
 
-        //2. 拦截非GET的请求
+        //2.1 拦截非GET的请求
         if(request.getMethod().equals("GET") || request.getServletPath().equals("/login")){
-            return;
+            return true;
         }
+
+        //2.2 拦截admin的请求路径
+//        if(request.getServletPath())
+        System.out.println(request.getRequestURI());
+        System.out.println(request.getContextPath());
 
         //3. 查询cookie
         Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
@@ -59,6 +53,22 @@ public class LoginAspect {
             log.warn("【登录校验】redis中查不到token, 访问的ip为" + request.getRequestURI());
             throw new MyException(UserEnums.LOGIN_ERROR);
         }
+
+        return true;
+
+    }
+
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+                           ModelAndView modelAndView) throws Exception {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+            throws Exception {
+        // TODO Auto-generated method stub
 
     }
 
