@@ -33,13 +33,31 @@ public class LoginAspect {
     @Before("execution(public * com.jking.computersite.controller.*.*(..))")
     public void login(){
 
-        //1. 得到HttpServletRequest对象
+        //1.1 获取request和response对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         HttpServletResponse response = attributes.getResponse();
-        response.setHeader("Access-Control-Allow-Origin", "null");
+
+        //1.2 处理所有origin的跨域
+        String origin = request.getHeader("Origin");
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        if (!StringUtils.isEmpty(origin)){
+            response.setHeader("Access-Control-Allow-Origin", origin);
+        }else {
+            response.setHeader("Access-Control-Allow-Origin", "null");
+        }
+
+        //1.3 处理非简单请求的请求问题
+        response.setHeader("Access-Control-Max-Age", "3600");
+
+        //1.4 允许带有cookie的跨域
         response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Expose-Headers", "Set-Cookie");
+
+        //1.5 允许所有请求头的跨域
+        String headers = request.getHeader("Access-Control-Allow-Headers");
+        if (!StringUtils.isEmpty(headers)){
+            response.setHeader("Access-Control-Allow-Headers",headers);
+        }
 
         //2. 拦截非GET的请求
         if(request.getMethod().equals("GET") || request.getServletPath().equals("/login")){

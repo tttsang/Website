@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.Cookie;
@@ -64,5 +65,13 @@ public class UserController/* throws UserException*/{
             throw new MyException(UserEnums.LOGIN_ERROR);
         }
 
+    }
+
+    @PutMapping("/changePassword")
+    public ResultVO changePassword(User user){
+
+        userService.changePassword(user);
+
+        return ResultVOUtil.success();
     }
 }

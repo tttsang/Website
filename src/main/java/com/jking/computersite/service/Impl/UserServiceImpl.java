@@ -7,6 +7,7 @@ import com.jking.computersite.exception.MyException;
 import com.jking.computersite.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -37,6 +38,21 @@ public class UserServiceImpl implements UserService{
         if (!password_sql.equals(password)){
             throw new MyException(UserEnums.PASSWORD_ERROR);
         }
+    }
+
+    @Override
+    public void changePassword(User user) {
+        if (user == null || user.getId()==null || user.getPassword()==null){
+            throw new MyException(UserEnums.NOT_USER);
+        }
+
+        String password = user.getPassword().trim();
+
+        if (password.equals("")){
+            throw new MyException(UserEnums.PASSWORD_NULL);
+        }
+
+        userMapper.updateByPrimaryKeySelective(user);
     }
 
 }

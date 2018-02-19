@@ -6,5 +6,5 @@ public interface UserEnums {
     BaseEnums ID_NOT_FOUND = new BaseEnums(2, "账号不存在");
     BaseEnums PASSWORD_ERROR = new BaseEnums(3, "密码错误");
     BaseEnums LOGIN_ERROR = new BaseEnums(4,"尚未登录");
-
+    BaseEnums PASSWORD_NULL = new BaseEnums(5, "密码不能为空");
 }
