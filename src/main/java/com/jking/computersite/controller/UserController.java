@@ -12,10 +12,7 @@ import com.jking.computersite.utils.ResultVOUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,11 +22,11 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RestController
-public class UserController/* throws UserException*/{
+@CrossOrigin
+public class UserController{
 
     @Autowired
     private UserService userService;
-
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
@@ -67,7 +64,7 @@ public class UserController/* throws UserException*/{
 
     }
 
-    @PutMapping("/changePassword")
+    @PostMapping("/changePassword")
     public ResultVO changePassword(User user){
 
         userService.changePassword(user);

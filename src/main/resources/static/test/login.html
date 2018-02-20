@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
@@ -26,52 +27,61 @@
         </div> -->
         <button type="button" class="btn btn-info" id="login_btn">登录</button>
         <button type="button" class="btn btn-info" id="logout_btn">退出登录</button>
+        <button type="button" class="btn btn-info" id="change_password">修改密码</button>
     </form>
 
     <script>
         $(function () {
+
             $("#login_btn").click(function () {
-                $.ajax({
-                    type: 'Post',
-                    url: 'api/login',
-                    data: {
-                        id: $("#id").val(),
-                        password: $("#password").val()
-                    },
-                    success: function (res) {
-                        alert(JSON.stringify(res))
-                        console.log(res)
-                    },
-                    error: function(res){
-                        alert(JSON.stringify(res))
-                        console.log(res)
-                    },
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true
+                var data = new FormData();
+                data.append("id", $('#id').val());
+                data.append("password", $('#password').val());
+                MyAjax('Post', 'api/login', data, function (res) {
+                    $("#preViewImage").attr("src", res.data);
                 });
             });
-            $("#logout_btn").click(function(){
-                $.ajax({
-                    type: 'get',
-                    url: 'api/logout',
-                    success: function (res) {
-                        alert(JSON.stringify(res))
-                        console.log(res)
-                    },
-                    error: function(res){
-                        alert(JSON.stringify(res))
-                        console.log(res)
-                    },
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true
-                });
+
+            $("#logout_btn").click(function () {
+                MyAjax('Get', 'api/logout');
             })
 
+            $("#change_password").click(function () {
+                var data = new FormData();
+                data.append("id", $('#id').val());
+                data.append("password", $('#password').val());
+                MyAjax('Post', 'api/changePassword', data, function (res) {
+                    $("#preViewImage").attr("src", res.data);
+                });
+            });
+
         })
+
+        function MyAjax(type, url, data, success) {
+            $.ajax({
+                type: type,
+                url: url,
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (res) {
+                    console.log(res)
+                    if (res.code == 0) {
+                        success && success(res);
+                    }
+                },
+                error: function (res) {
+                    alert(JSON.stringify(res))
+                    console.log(res)
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true
+            });
+        }
     </script>
 
     <style>

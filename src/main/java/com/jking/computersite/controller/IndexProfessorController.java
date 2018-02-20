@@ -1,10 +1,11 @@
 package com.jking.computersite.controller;
 
+import com.jking.computersite.enums.CommonEnums;
+import com.jking.computersite.enums.UploadEnums;
 import com.jking.computersite.service.IndexProfessorService;
 import com.jking.computersite.VO.ResultVO;
 import com.jking.computersite.constant.UploadConstant;
 import com.jking.computersite.entity.IndexProfessor;
-import com.jking.computersite.enums.IndexProfessorEums;
 import com.jking.computersite.exception.MyException;
 import com.jking.computersite.utils.FileUtil;
 import com.jking.computersite.utils.ResultVOUtil;
@@ -16,45 +17,48 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("indexProfessor")
+@CrossOrigin
 public class IndexProfessorController {
 
     @Autowired
     private IndexProfessorService indexProfessorService;
 
     @ResponseBody
-    @GetMapping("getAll")
+    @GetMapping("/")
     public ResultVO getAll(){
         return ResultVOUtil.success(indexProfessorService.getAll());
     }
 
     @ResponseBody
     @PostMapping("/")
-    public ResultVO add(MultipartFile file,String name){
-        if (name.trim().equals("")){
-            throw new MyException(IndexProfessorEums.NAME_NOT_FOUND);
+    public ResultVO add(IndexProfessor indexProfessor,MultipartFile file){
+        System.out.println(indexProfessor);
+        if (indexProfessor.getName().trim().equals("")){
+            throw new MyException(CommonEnums.DATA_UNCOMPLETED);
         }
-        System.out.println(name);
-        String extension = FileUtil.getExtension(file);
+        if (FileUtil.isNull(file)){
+            throw new MyException(UploadEnums.FILE_IS_NULL);
+        }
         FileUtil.isImage(file);
+        String extension = FileUtil.getExtension(file);
         String filePath = UploadConstant.INDEXPROFESSOR + UUID.randomUUID() + "." +extension;
         //保存图片
         FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);
         //保存到数据库
-        IndexProfessor indexProfessor = new IndexProfessor();
-        indexProfessor.setName(name);
         indexProfessor.setPictureurl(filePath);
         indexProfessorService.add(indexProfessor);
         return ResultVOUtil.success();
     }
 
     @ResponseBody
-    @PutMapping("/{id}")
-    public ResultVO update(@RequestParam(required = false) MultipartFile file,
-                           @RequestParam(required = false) String name,
+    @PostMapping("/update/{id}")
+    public ResultVO update(IndexProfessor indexProfessor,
+                           @RequestParam(required = false) MultipartFile file,
                            @PathVariable Integer id){
+        System.out.println(indexProfessor);
         IndexProfessor indexProfessor_sql = indexProfessorService.find(id);
-        if (name.trim().equals("")){
-            name = null;
+        if (indexProfessor.getName()!=null && indexProfessor.getName().trim().equals("")){
+            indexProfessor.setName(null);
         }
         if (file!=null && !file.isEmpty()){
             FileUtil.isImage(file);
@@ -62,10 +66,9 @@ public class IndexProfessorController {
             FileUtil.deleteFile(UploadConstant.PUBLIC + filePath);
             FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);
         }
-        IndexProfessor indexProfessor = new IndexProfessor();
-        indexProfessor.setName(name);
         indexProfessor.setId(id);
         indexProfessor.setPictureurl(indexProfessor_sql.getPictureurl());
+        System.out.println(indexProfessor.getName());
         indexProfessorService.update(indexProfessor);
         return ResultVOUtil.success();
     }

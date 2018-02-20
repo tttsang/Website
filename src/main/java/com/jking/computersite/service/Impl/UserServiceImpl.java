@@ -1,5 +1,6 @@
 package com.jking.computersite.service.Impl;
 
+import com.jking.computersite.enums.CommonEnums;
 import com.jking.computersite.service.UserService;
 import com.jking.computersite.entity.User;
 import com.jking.computersite.enums.UserEnums;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService{
     public void login(User user) {
 
         if (user == null || user.getId()==null || user.getPassword()==null){
-            throw new MyException(UserEnums.NOT_USER);
+            throw new MyException(CommonEnums.DATA_UNCOMPLETED);
         }
 
         String id = user.getId().trim();
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService{
 
         //判断用户是否存在
         if (user_dao == null){
-            throw new MyException(UserEnums.ID_NOT_FOUND);
+            throw new MyException(CommonEnums.ID_NOT_FOUND);
         }
 
         //判断密码是否正确
@@ -43,13 +44,21 @@ public class UserServiceImpl implements UserService{
     @Override
     public void changePassword(User user) {
         if (user == null || user.getId()==null || user.getPassword()==null){
-            throw new MyException(UserEnums.NOT_USER);
+            throw new MyException(CommonEnums.DATA_UNCOMPLETED);
         }
 
         String password = user.getPassword().trim();
 
         if (password.equals("")){
             throw new MyException(UserEnums.PASSWORD_NULL);
+        }
+
+        //从数据库中查找
+        User user_dao = userMapper.selectByPrimaryKey(user.getId());
+
+        //判断用户是否存在
+        if (user_dao == null){
+            throw new MyException(CommonEnums.ID_NOT_FOUND);
         }
 
         userMapper.updateByPrimaryKeySelective(user);

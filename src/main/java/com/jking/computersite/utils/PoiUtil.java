@@ -1,7 +1,7 @@
 package com.jking.computersite.utils;
 
 import com.jking.computersite.constant.UploadConstant;
-import com.jking.computersite.enums.CommonEnums;
+import com.jking.computersite.enums.UploadEnums;
 import com.jking.computersite.exception.MyException;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.converter.WordToHtmlConverter;
@@ -77,7 +77,7 @@ public class PoiUtil {
     public static String getDoc(String path){
         File file = new File(UploadConstant.PUBLIC + path);
         if (!file.exists()){
-            throw new MyException(CommonEnums.FILE_NOT_FOUND);
+            throw new MyException(UploadEnums.FILE_NOT_FOUND);
         }
         return path + "article.html";
     }

@@ -12,10 +12,11 @@ import java.io.File;
 import java.util.UUID;
 
 @RestController
+@CrossOrigin
 public class CommonController {
 
     @ResponseBody
-    @PostMapping("/preview")
+    @PostMapping("/previewPic")
     public ResultVO preview(@RequestParam("file") MultipartFile file){
         FileUtil.isImage(file);
         String filePath = UploadConstant.IMAGEPREVIEW + file.getOriginalFilename();

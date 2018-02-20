@@ -38,26 +38,28 @@ public class LoginAspect {
         HttpServletRequest request = attributes.getRequest();
         HttpServletResponse response = attributes.getResponse();
 
-        //1.2 处理所有origin的跨域
-        String origin = request.getHeader("Origin");
-        response.setHeader("Access-Control-Allow-Methods", "*");
-        if (!StringUtils.isEmpty(origin)){
-            response.setHeader("Access-Control-Allow-Origin", origin);
-        }else {
-            response.setHeader("Access-Control-Allow-Origin", "null");
-        }
-
-        //1.3 处理非简单请求的请求问题
-        response.setHeader("Access-Control-Max-Age", "3600");
-
-        //1.4 允许带有cookie的跨域
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-
-        //1.5 允许所有请求头的跨域
-        String headers = request.getHeader("Access-Control-Allow-Headers");
-        if (!StringUtils.isEmpty(headers)){
-            response.setHeader("Access-Control-Allow-Headers",headers);
-        }
+//        //1.2 处理所有origin的跨域
+//        String origin = request.getHeader("Origin");
+//        System.out.println(origin);
+//        response.setHeader("Access-Control-Allow-Methods", "*");
+//        if (!StringUtils.isEmpty(origin)){
+//            response.setHeader("Access-Control-Allow-Origin", origin);
+//        }else {
+//            response.setHeader("Access-Control-Allow-Origin", "null");
+//        }
+//
+//        //1.3 处理非简单请求的请求问题
+////        response.setHeader("Access-Control-Max-Age", "3600");
+//
+//        //1.4 允许带有cookie的跨域
+//        response.setHeader("Access-Control-Allow-Credentials", "true");
+//
+//        //1.5 允许所有请求头的跨域
+//        String headers = request.getHeader("Access-Control-Request-Headers");
+//        System.out.println(headers);
+//        if (!StringUtils.isEmpty(headers)){
+//            response.setHeader("Access-Control-Allow-Headers",headers);
+//        }
 
         //2. 拦截非GET的请求
         if(request.getMethod().equals("GET") || request.getServletPath().equals("/login")){

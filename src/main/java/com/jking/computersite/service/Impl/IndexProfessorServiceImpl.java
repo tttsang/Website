@@ -1,8 +1,8 @@
 package com.jking.computersite.service.Impl;
 
+import com.jking.computersite.enums.CommonEnums;
 import com.jking.computersite.service.IndexProfessorService;
 import com.jking.computersite.entity.IndexProfessor;
-import com.jking.computersite.enums.IndexProfessorEums;
 import com.jking.computersite.exception.MyException;
 import com.jking.computersite.mapper.IndexProfessorMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class IndexProfessorServiceImpl implements IndexProfessorService {
     public IndexProfessor find(Integer id) {
         IndexProfessor indexProfessor = indexProfessorMapper.selectByPrimaryKey(id);
         if (indexProfessor == null){
-            throw new MyException(IndexProfessorEums.ID_NOT_FOUND);
+            throw new MyException(CommonEnums.ID_NOT_FOUND);
         }
         return indexProfessor;
     }
@@ -39,7 +39,7 @@ public class IndexProfessorServiceImpl implements IndexProfessorService {
     public int delete(Integer id) {
         int record = indexProfessorMapper.deleteByPrimaryKey(id);
         if (record == 0){
-            throw new MyException(IndexProfessorEums.ID_NOT_FOUND);
+            throw new MyException(CommonEnums.ID_NOT_FOUND);
         }
         return record;
     }
@@ -49,7 +49,7 @@ public class IndexProfessorServiceImpl implements IndexProfessorService {
         System.out.println(indexProfessor);
         int record = indexProfessorMapper.updateByPrimaryKeySelective(indexProfessor);
         if (record == 0){
-            throw new MyException(IndexProfessorEums.ID_NOT_FOUND);
+            throw new MyException(CommonEnums.ID_NOT_FOUND);
         }
         return record;
     }

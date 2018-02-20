@@ -1,6 +1,6 @@
 package com.jking.computersite.utils;
 
-import com.jking.computersite.enums.CommonEnums;
+import com.jking.computersite.enums.UploadEnums;
 import com.jking.computersite.exception.MyException;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -10,13 +10,20 @@ import java.io.FileOutputStream;
 
 public class FileUtil {
 
+    public static boolean isNull(MultipartFile file){
+        if (file!=null && !file.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
     public static String getExtension(MultipartFile file){
         String extension;
         int i = file.getOriginalFilename().lastIndexOf('.');
         if (i > 0){
             extension = file.getOriginalFilename().substring(i+1);
         }else {
-            throw new MyException(CommonEnums.NOT_EXTENSION);
+            throw new MyException(UploadEnums.NOT_EXTENSION);
         }
         return extension;
     }
@@ -26,9 +33,10 @@ public class FileUtil {
         if (!extension.equalsIgnoreCase("PNG")
                 && !extension.equalsIgnoreCase("JPG")
                 && !extension.equalsIgnoreCase("GIF")
+                && !extension.equalsIgnoreCase("ICO")
                 && !extension.equalsIgnoreCase("JPEG")
                 && !extension.equalsIgnoreCase("BMP")){
-            throw new MyException(CommonEnums.ONLY_PICTURE);
+            throw new MyException(UploadEnums.ONLY_PICTURE);
         }
     }
 
@@ -36,7 +44,7 @@ public class FileUtil {
         String extension = getExtension(file);
         if (!extension.equalsIgnoreCase("DOC")
                 && !extension.equalsIgnoreCase("DOCX")){
-            throw new MyException(CommonEnums.ONLY_DOC);
+            throw new MyException(UploadEnums.ONLY_DOC);
         }
     }
 
