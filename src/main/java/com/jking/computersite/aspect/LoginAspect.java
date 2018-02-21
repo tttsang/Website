@@ -49,7 +49,7 @@ public class LoginAspect {
 //        }
 //
 //        //1.3 处理非简单请求的请求问题
-////        response.setHeader("Access-Control-Max-Age", "3600");
+//        response.setHeader("Access-Control-Max-Age", "3600");
 //
 //        //1.4 允许带有cookie的跨域
 //        response.setHeader("Access-Control-Allow-Credentials", "true");

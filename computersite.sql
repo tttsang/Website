@@ -14,3 +14,9 @@ CREATE TABLE t_index_professor(
     pictureurl varchar(255) NOT NULL,
     name varchar(10)
 );
+
+CREATE TABLE t_power_garden(
+	id int PRIMARY KEY AUTO_INCREMENT,
+    major varchar(30) NOT NULL,
+    name varchar(10)
+);
