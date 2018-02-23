@@ -3,7 +3,7 @@
 <mapper namespace="com.jking.computersite.mapper.PowerGardenMapper" >
   <resultMap id="BaseResultMap" type="com.jking.computersite.entity.PowerGarden" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="major" property="major" jdbcType="VARCHAR" />
+    <result column="major" property="major" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -15,6 +15,22 @@
     from t_power_garden
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByMajor" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_power_garden
+    where major = #{major,jdbcType=INTEGER}
+  </select>
+  <select id="selectByMajorAndName" resultMap="BaseResultMap" parameterType="com.jking.computersite.entity.PowerGarden" >
+    select
+    <include refid="Base_Column_List" />
+    from t_power_garden
+    where major = #{major,jdbcType=INTEGER} and name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="getMajorNumber" resultType="java.lang.Integer">
+    select max(major)
+    from t_power_garden
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_power_garden
     where id = #{id,jdbcType=INTEGER}
@@ -22,7 +38,7 @@
   <insert id="insert" parameterType="com.jking.computersite.entity.PowerGarden" >
     insert into t_power_garden (id, major, name
       )
-    values (#{id,jdbcType=INTEGER}, #{major,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{major,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.jking.computersite.entity.PowerGarden" >
@@ -43,7 +59,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="major != null" >
-        #{major,jdbcType=VARCHAR},
+        #{major,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -54,7 +70,7 @@
     update t_power_garden
     <set >
       <if test="major != null" >
-        major = #{major,jdbcType=VARCHAR},
+        major = #{major,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -64,7 +80,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.jking.computersite.entity.PowerGarden" >
     update t_power_garden
-    set major = #{major,jdbcType=VARCHAR},
+    set major = #{major,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

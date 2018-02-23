@@ -17,6 +17,6 @@ CREATE TABLE t_index_professor(
 
 CREATE TABLE t_power_garden(
 	id int PRIMARY KEY AUTO_INCREMENT,
-    major varchar(30) NOT NULL,
-    name varchar(10)
+  major INTEGER NOT NULL,
+  name varchar(10)
 );

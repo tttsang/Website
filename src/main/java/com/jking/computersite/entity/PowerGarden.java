@@ -3,7 +3,7 @@ package com.jking.computersite.entity;
 public class PowerGarden {
     private Integer id;
 
-    private String major;
+    private Integer major;
 
     private String name;
 
@@ -15,12 +15,12 @@ public class PowerGarden {
         this.id = id;
     }
 
-    public String getMajor() {
+    public Integer getMajor() {
         return major;
     }
 
-    public void setMajor(String major) {
-        this.major = major == null ? null : major.trim();
+    public void setMajor(Integer major) {
+        this.major = major;
     }
 
     public String getName() {
@@ -29,5 +29,14 @@ public class PowerGarden {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "PowerGarden{" +
+                "id=" + id +
+                ", major=" + major +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
