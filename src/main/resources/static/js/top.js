@@ -163,6 +163,5 @@
 	$(".li2").click(function(){
 		item_main.find('a:first').removeClass('active');
   		$(this).parent().parent().find('a:first').addClass('active');
-    });
-
+  });
  })
