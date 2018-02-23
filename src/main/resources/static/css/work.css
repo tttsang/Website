@@ -1,0 +1,31 @@
+.instruct_content h3 {
+	text-align: left;
+	font-family: SimSun;
+	font-size: 26px;
+	font-weight: bold;
+}
+.table_list {
+	margin: 0 auto;
+	margin-top: 80px;
+	width: 505px;
+	font-size: 25px;
+	font-family: SimSun;
+	border-collapse: separate;
+	border-spacing: 3px;
+}
+.table_list .blue_td {
+	height: 40px;
+	/*border-top: 2px solid #FFF;*/
+	background: rgb(194,227,253);
+}
+.table_list .pink_td {
+	height: 40px;
+	/*border-top: 2px solid #FFF;*/
+	background: rgb(254,235,231);
+}
+/*.table_list .blue_td td {
+	border-right: 1px solid #FFF;
+}*/
+/*.col-md-6 {
+	margin-right: 1px solid #FFF;
+}*/

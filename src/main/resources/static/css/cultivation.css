@@ -1,0 +1,28 @@
+.table_consturt {
+	margin: 0 auto;
+	margin-top: 15px;
+	width: 514px;
+	border-collapse: separate;
+	border-spacing: 3px;
+}
+.table_consturt caption {
+	height: 50px;
+	margin-left: 3px;
+	margin-right: 3px;
+	font-size: 26px;
+	font-family: SimSun;
+	font-weight: bold;
+	color: #FFF;
+    background: rgb(0,84,160);
+	text-align: center;
+}
+.table_consturt .blue_td {
+	height: 40px;
+	/*border-top: 2px solid #FFF;*/
+	background: rgb(194,227,253);
+}
+.table_consturt .pink_td {
+	height: 40px;
+	/*border-top: 2px solid #FFF;*/
+	background: rgb(254,235,231);
+}

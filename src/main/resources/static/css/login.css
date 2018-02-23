@@ -1,0 +1,54 @@
+/*登录*/
+#login{
+	cursor: pointer;
+}
+#myModal .modal-dialog{
+	width: 350px;
+}
+#myModal .modal-content{
+	padding: 10px;
+}
+#myModal .modal-title{
+	text-align: left;
+	font-weight: bold;
+}
+#myModal .modal-header .close:hover{
+	color: red;
+}
+#myModal .modal-body .label-error{
+	margin: 5px 0;
+	color: red;
+	font-weight: normal;
+}
+#myModal .btn-login{
+	width: 100%;
+	height: 40px;
+	margin-top: 30px;
+	background: #048cfb;
+	font-size: 16px;
+}
+#myModal .btn-login:hover{
+	background: #048cfb;
+	font-weight: bold;
+}
+#myModal .input-group input{
+	width: 100%;
+	height: 40px;
+	border: none;
+	outline: none;
+	border-radius: 0;
+	border-bottom: 1px solid #048cfc;
+	font-size: 15px;
+	color: #555555;
+	margin: 0;
+}
+#myModal .modal-body .fa{
+	color: #048CFC;
+	font-size: 20px;
+}
+#myModal .modal-body .input-group-addon{
+	background-color: white;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #048CFC;
+}

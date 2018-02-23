@@ -1,0 +1,77 @@
+body{
+	width:100%;
+}
+
+#content{
+	position:relative;
+    top:0px;
+    left:50%;
+    margin-left: -500px;
+    width:1000px;
+}
+.currentPosition{
+	position:absolute;
+	top:0px;
+	left:0px;
+	margin-bottom: 15px;
+	font:"微软雅黑";
+	
+}
+.currentPosition span{
+	color:rgb(135,138,141);
+	cursor:pointer;
+}
+.currentPosition span:nth-of-type(2n-1):hover{
+	color:rgb(4,140,251);
+	
+}
+#box1{
+	position:relative;
+	top:40px;
+	height:1030px;
+	width:1000px;
+	overflow: hidden;
+	background: url(../images/big_background.png) no-repeat;
+	border-radius: 15px;
+	box-shadow:0px 0px 30px #0453e5;
+	margin-bottom: 90px;
+}
+#unionWork{
+	width:960px;
+	margin-left: 20px;
+	position:relative;
+	top:50px;
+	text-align: left;
+	text-indent: 1em;
+	border-bottom:2px solid rgb(206,206,206);
+	font: 40px/50px "宋体";
+	color:rgb(3,118,223) 
+}
+
+.table_list {
+	position:relative;
+	top:30px;
+	margin: 0 auto;
+	margin-top: 80px;
+	width: 505px;
+	font-size: 25px;
+	font-family: SimSun;
+	border-collapse: separate;
+	border-spacing: 3px;
+}
+.table_list th{
+	height: 50px;
+	background: rgb(0,84,160);
+	color:white;
+	text-align:center;
+}
+.table_list .pink_td {
+	height: 40px;
+	/*border-top: 2px solid #FFF;*/
+	background: rgb(254,235,231);
+}
+.table_list .green_td {
+	height: 40px;
+	/*border-top: 2px solid #FFF;*/
+	background: rgb(194,227,253);
+}

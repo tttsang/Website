@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<title>工会工作</title>
+	<script type="text/javascript" src="js/jquery-3.1.0.min.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="js/top.js" ></script>
+	<script type="text/javascript" src="js/login.js" ></script>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+	<link rel="stylesheet" href="css/login.css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.css" />
+	<link rel="stylesheet" href="css/son_main.css">
+	<link rel="stylesheet" href="css/union.css"/>
+	<link rel="stylesheet" href="css/main.css" />
+	<link rel="stylesheet" href="css/top.css" />
+</head>
+	<body>
+		<!--引入公共头部模板-->
+		<script type="text/javascript" src="js/head.js" ></script>
+		<!-- 内容模块-->
+		<section id="content">
+		<!-- 当前位置-->
+         <section class="currentPosition">
+         	<span>首页</span>
+         	<span class="icon-angle-right"></span>
+         	<span>工会工作</span>
+         	</section>
+        <div id="box1">
+        	<div id="unionWork">工会工作</div>
+        	<table class="table_list">
+        	<tbody>
+			    <tr>
+                  <th>工会职称</th>
+                  <th>工会委员</th>
+                </tr>
+			    <tr class="green_td">
+			        <td>工会主席</td>
+			        <td>叉叉叉</td>
+			    </tr>
+			      <tr class="pink_td">
+			    	<td></td>
+			    	<td></td>
+			    </tr>
+			    <tr class="green_td">
+			        <td></td>
+			        <td></td>
+			    </tr>  
+			    <tr class="pink_td">
+			    	<td></td>
+			    	<td></td>
+			    </tr>
+			    <tr class="green_td">
+			        <td></td>
+			        <td></td>
+			    </tr>
+			    <tr class="pink_td">
+			    	<td></td>
+			    	<td></td>
+			    </tr>
+			    <tr class="green_td">
+			        <td></td>
+			        <td></td>
+			    </tr>
+        </table>
+        </div>
+        <script>
+        	/* 鼠标点击表格是增加点击效果*/
+        	var atd=document.getElementsByTagName('td')
+        	for(var i=0;i<atd.length;i++){
+        		atd[i].index=i;
+        		atd[i].onfocus=function(){atd[this.index].style.cssText="box-shadow:1px 1px 2px #000 inset;";}
+		        atd[i].onblur=function(){atd[this.index].style.cssText="";};
+        	}
+        </script>
+        
+         </section>
+         <!--引入公共底部模板-->
+	<script type="text/javascript" src="js/foot.js" ></script>
+	</body>
+</html>

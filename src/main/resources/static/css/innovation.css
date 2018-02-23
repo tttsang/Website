@@ -1,0 +1,159 @@
+ul,li,a,span{
+	margin:0;
+	padding: 0;
+}
+
+body{
+	width:100%;
+}
+#content{
+	position:relative;
+    top:0px;
+    left:50%;
+    margin-left: -500px;
+    width:1000px;
+    
+}
+.currentPosition{
+	position:absolute;
+	top:0px;
+	left:0px;
+	margin-bottom: 15px;
+	font:"微软雅黑";
+	
+}
+.currentPosition span{
+	color:rgb(135,138,141);
+	cursor:pointer;
+}
+.currentPosition span:nth-of-type(2n-1):hover{
+	color:rgb(4,140,251);
+	
+}
+#box1{
+	position:relative;
+	top:40px;
+	height:1240px;
+	width:1000px;
+	overflow: hidden;
+	background: url(../images/big_background.png) no-repeat;
+	border-radius: 15px;
+	box-shadow:0px 0px 30px #0453e5;
+	margin-bottom: 90px;
+}
+#innovation{
+	width:960px;
+	margin-left: 20px;
+	margin-bottom: 30px;
+	position:relative;
+	top:50px;
+	text-align: left;
+	text-indent: 1em;
+	border-bottom:2px solid rgb(206,206,206);
+	font: 40px/50px "微软雅黑";
+	color:rgb(3,118,223);
+	 
+}
+
+#contentList li{
+	display: block;
+	height:45px;
+	position:relative;
+	width:960px;
+	margin-left: 20px;
+	top:60px;
+	left:0px;
+	border-bottom:2px solid rgb(223,222,222);
+	margin-bottom: 30px;
+}
+#contentList li a{
+	text-decoration:none;
+	color:black;
+}
+#contentList li a:hover{
+	color:blue;
+}
+.icon-caret-right{
+	font-size: 20px;
+	color:rgb(153,152,152);
+	position:absolute;
+	left:0px;
+	top:10px;
+	cursor:pointer;
+}
+#contentList li span:nth-of-type(2){
+	display:inline-block;
+	font: 24px/40px "宋体";
+	position:absolute;
+	left:30px;
+}
+#contentList li span:nth-of-type(3){
+	display:inline-block;
+	font:normal 24px/40px "宋体";
+	position:absolute;
+	right:0px;
+	
+}
+#pageNumber{
+	position:absolute;
+	bottom: 0px;
+	left:50%;
+	margin-left: -80px;
+}
+#pageNumber span{
+	display: inline-block;
+	margin-right: 15px;;
+	font-size: 30px;
+	color:rgb(153,152,152);
+	cursor: pointer;
+}
+#pageNumber span:nth-of-type(2){
+	width:45px;
+	height:45px;
+	height:45px;
+	border-radius: 5px;
+	background: #016cce;
+	color:white;
+}
+
+
+#passage{
+	display:none;
+}
+#title{
+	border-bottom: 2px solid rgb(206,206,206);
+}
+#title span{
+	display:inline-block;
+	font: bold 18px/35px "宋体";
+	margin-right: 40px;
+}
+#massage{
+	width:916px;
+	margin:auto;
+	position:relative;
+    top:20px;
+    text-align: left;
+    font: normal 21px/35px "宋体";
+    letter-spacing:4px;
+    text-indent:2em;
+}
+
+#passage img{
+	position:relative;
+	top:40px;
+	width:674px;
+	height:402px;
+}
+#passage ul{
+	position:relative;
+	top:70px;
+	left:70px;
+	font: bold normal 20px/30px "微软雅黑";
+	text-align: left;
+}
+
+#passage ul li:nth-of-type(2) span{
+	margin-right:15px;
+	
+}

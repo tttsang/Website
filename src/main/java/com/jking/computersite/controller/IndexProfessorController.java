@@ -45,6 +45,7 @@ public class IndexProfessorController {
         //保存图片
         FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);
         //保存到数据库
+        indexProfessor.setId(null);
         indexProfessor.setPictureurl(filePath);
         indexProfessorService.add(indexProfessor);
         return ResultVOUtil.success();
