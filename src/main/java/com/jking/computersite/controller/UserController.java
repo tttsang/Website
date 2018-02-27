@@ -65,9 +65,12 @@ public class UserController{
     }
 
     @PostMapping("/changePassword")
-    public ResultVO changePassword(User user){
+    public ResultVO changePassword(String oldPassword,String newPassword,String surePassword){
 
-        userService.changePassword(user);
+        if (!newPassword.equals(surePassword)){
+            throw new MyException(UserEnums.PASSWORD_NOT_EQUAL);
+        }
+        userService.changePassword(oldPassword.trim(), newPassword.trim());
 
         return ResultVOUtil.success();
     }

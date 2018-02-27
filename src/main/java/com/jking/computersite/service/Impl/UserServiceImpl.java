@@ -42,24 +42,13 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void changePassword(User user) {
-        if (user == null || user.getId()==null || user.getPassword()==null){
-            throw new MyException(CommonEnums.DATA_UNCOMPLETED);
+    public void changePassword(String oldPassword, String newPassword) {
+        User user = userMapper.selectByPrimaryKey("admin");
+        if (!user.getPassword().equals(oldPassword)){
+            throw new MyException(UserEnums.PASSWORD_ERROR);
         }
 
-        String password = user.getPassword().trim();
-
-        if (password.equals("")){
-            throw new MyException(UserEnums.PASSWORD_NULL);
-        }
-
-        //从数据库中查找
-        User user_dao = userMapper.selectByPrimaryKey(user.getId());
-
-        //判断用户是否存在
-        if (user_dao == null){
-            throw new MyException(CommonEnums.ID_NOT_FOUND);
-        }
+        user.setPassword(newPassword);
 
         userMapper.updateByPrimaryKeySelective(user);
     }

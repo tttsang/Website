@@ -6,5 +6,6 @@ public interface UserService {
 
     void login(User user);
 
-    void changePassword(User user);
+    void changePassword(String oldPassword, String newPassword);
+
 }

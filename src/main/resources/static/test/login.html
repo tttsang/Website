@@ -27,6 +27,19 @@
         </div> -->
         <button type="button" class="btn btn-info" id="login_btn">登录</button>
         <button type="button" class="btn btn-info" id="logout_btn">退出登录</button>
+        <div class="hr"></div>
+        <div class="input-group">
+            <span class="input-group-addon">原密码: </span>
+            <input type="text" class="form-control" id="oldPassword" value="">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">新密码: </span>
+            <input type="text" class="form-control" id="newPassword" value="">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">确认密码: </span>
+            <input type="text" class="form-control" id="surePassword" value="">
+        </div>
         <button type="button" class="btn btn-info" id="change_password">修改密码</button>
     </form>
 
@@ -46,8 +59,9 @@
 
             $("#change_password").click(function () {
                 var data = new FormData();
-                data.append("id", $('#id').val());
-                data.append("password", $('#password').val());
+                data.append("oldPassword", $('#oldPassword').val());
+                data.append("newPassword", $('#newPassword').val());
+                data.append("surePassword", $('#surePassword').val());
                 MyAjax('Post', 'api/changePassword', data);
             });
 
