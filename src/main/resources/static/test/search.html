@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>站内索搜</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <base href="http://bingexxx.net/" />
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <form role="form" id="login_form">
+        <h2 class="title">站内索搜</h2>
+        <div class="input-group">
+            <span class="input-group-addon">关键词: </span>
+            <input type="text" class="form-control" id="keyword" value="">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">当前页(选填, 默认为1): </span>
+            <input type="text" class="form-control" id="page" value="1">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">每页展示的条数(选填, 默认为10): </span>
+            <input type="text" class="form-control" id="pageSize" value="10">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">每条的单词数(选填, 默认为200): </span>
+            <input type="text" class="form-control" id="wordSize" value="200">
+        </div>
+        <button type="button" class="btn btn-info" id="search">索搜</button>
+    </form>
+
+    <script>
+        $(function () {
+
+            $("#search").click(function () {
+                var url = '/api/search?keyword=' + $("#keyword").val();
+                if($("#page").val() != ""){
+                    url += "&page=" + $("#page").val();
+                }
+                if($("#pageSize").val() != ""){
+                    url += "&pageSize=" + $("#pageSize").val();
+                }
+                if($("#wordSize").val() != ""){
+                    url += "&wordSize=" + $("#wordSize").val();
+                }
+                MyAjax('Get', url);
+            });
+
+        })
+
+        function MyAjax(type, url, data, success) {
+            $.ajax({
+                type: type,
+                url: url,
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                dataType: "json",
+                success: function (res) {
+                    console.log(res)
+                    if (res.code == 0) {
+                        success && success(res);
+                    }
+                },
+                error: function (res) {
+                    alert(JSON.stringify(res))
+                    console.log(res)
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true
+            });
+        }
+    </script>
+
+    <style>
+        #login_form {
+            width: 400px;
+        }
+    </style>
+</body>
+
+</html>

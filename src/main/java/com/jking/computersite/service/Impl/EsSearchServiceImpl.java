@@ -1,6 +1,7 @@
 package com.jking.computersite.service.Impl;
 
 import com.jking.computersite.service.EsSearchService;
+import com.jking.computersite.utils.FilterHtmlUtil;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -18,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class EsSearchServiceImpl implements EsSearchService {
@@ -32,6 +30,7 @@ public class EsSearchServiceImpl implements EsSearchService {
     @Override
     public String add(String title, String body) {
         try {
+            body = FilterHtmlUtil.Html2Text(body);
             XContentBuilder content = XContentFactory.jsonBuilder()
                     .startObject()
                     .field("title", title)
@@ -51,6 +50,7 @@ public class EsSearchServiceImpl implements EsSearchService {
 
     @Override
     public void update(String id, String title, String body) {
+        body = FilterHtmlUtil.Html2Text(body);
         try {
             UpdateRequest updateRequest = new UpdateRequest("computersite", "article", id);
             XContentBuilder content = XContentFactory.jsonBuilder()
@@ -104,7 +104,7 @@ public class EsSearchServiceImpl implements EsSearchService {
             hitMap.put("id", hit.getId());
             result.add(hitMap);
         }
-        Map<String ,Object> map = new HashMap<>();
+        Map<String ,Object> map = new LinkedHashMap<>();
         long totalPage = hits.getTotalHits()/pageSize;
         if (hits.getTotalHits()%pageSize != 0){
             totalPage++;
