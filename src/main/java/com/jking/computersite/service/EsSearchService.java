@@ -1,8 +1,11 @@
 package com.jking.computersite.service;
 
+import java.util.List;
+import java.util.Map;
+
 public interface EsSearchService {
 
-    void add(String title,String body);
+    String add(String title,String body);
 
     void update(String id,String title,String body);
 
@@ -10,5 +13,7 @@ public interface EsSearchService {
 
     void get(String id);
 
-    void search(String keyword);
+    Map<String,Object> search(String keyword,int page,int pageSize,int wordSize);
+
+    int getCount(String keyword);
 }

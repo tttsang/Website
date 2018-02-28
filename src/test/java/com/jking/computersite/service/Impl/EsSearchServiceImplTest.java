@@ -17,6 +17,21 @@ public class EsSearchServiceImplTest {
 
     @Test
     public void TestAdd(){
-        searchService.add("12","12");
+        searchService.add("中国","中华人们共和国");
+    }
+
+    @Test
+    public void TestUpdate(){
+        searchService.update("AWHcgGFhy8X-cDffTLCX","中国","中华人们共和国2");
+    }
+
+    @Test
+    public void TestDel(){
+        searchService.delete("AWHcgGFhy8X-cDffTLCX");
+    }
+
+    @Test
+    public void TestGet(){
+        searchService.get("AWHcfZdQy8X-cDffTLCW");
     }
 }

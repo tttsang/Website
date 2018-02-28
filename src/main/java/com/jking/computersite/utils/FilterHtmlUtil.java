@@ -32,7 +32,6 @@ public class FilterHtmlUtil {
             Pattern p = Pattern.compile("\\s*|\t|\r|\n");
             Matcher m = p.matcher(htmlStr);
             textStr = m.replaceAll("");
-            System.out.println(textStr);
 
         }catch(Exception e){
             e.printStackTrace();
