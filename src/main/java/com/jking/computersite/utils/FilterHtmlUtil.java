@@ -1,5 +1,6 @@
 package com.jking.computersite.utils;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
@@ -27,8 +28,12 @@ public class FilterHtmlUtil {
             p_html = Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
             m_html = p_html.matcher(htmlStr);
             htmlStr = m_html.replaceAll(""); //过滤html标签
-            System.out.println(htmlStr);
-            textStr = htmlStr;
+            htmlStr = htmlStr.replaceAll("&nbsp; ", "");
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(htmlStr);
+            textStr = m.replaceAll("");
+            System.out.println(textStr);
+
         }catch(Exception e){
             e.printStackTrace();
         }
