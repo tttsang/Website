@@ -1,15 +1,14 @@
 package com.jking.computersite.controller;
 
 import com.jking.computersite.VO.ResultVO;
+import com.jking.computersite.utils.FilterHtmlUtil;
 import com.jking.computersite.utils.PoiUtil;
 import com.jking.computersite.utils.ResultVOUtil;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@CrossOrigin
 public class TestController {
 
     @ResponseBody
@@ -29,5 +28,11 @@ public class TestController {
     @PostMapping("/getDoc")
     public ResultVO getDoc(@RequestParam("path") String path){
         return ResultVOUtil.success(PoiUtil.getDoc(path));
+    }
+
+    @ResponseBody
+    @PostMapping("/html")
+    public ResultVO html(String body){
+        return ResultVOUtil.success(FilterHtmlUtil.Html2Text(body));
     }
 }

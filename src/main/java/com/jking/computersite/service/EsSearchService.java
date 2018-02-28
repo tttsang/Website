@@ -9,4 +9,6 @@ public interface EsSearchService {
     void delete(String id);
 
     void get(String id);
+
+    void search(String keyword);
 }
