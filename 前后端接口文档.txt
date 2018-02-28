@@ -124,11 +124,28 @@
 
 /**
  * 4.站内索搜模块
- * 测试页面: http://bingexxx.net/test/powerGarden.html
+ * 测试页面: http://bingexxx.net/test/search.html
  */
 
 //索搜       Get          http://bingexxx.net/api/search
 {
-    "keyword": "xxx",
-    ""
+    "keyword": "xxx",       //关键词
+    "page" : "xxx",         //当前页(选填, 默认为1)
+    "pageSize" : "xxx",     //每页展示的条数(选填, 默认为10)
+    "wordSize" : "xxx"      //每条的单词数(选填, 默认为200)
+}
+{   //返回结果
+    "code": 0,
+    "message": "成功",
+    "data": {
+        "totalItem": 1,     //一共多少条数据
+        "totalPage": 1,     //页数
+        "pageList": [
+            {
+                "id": "AWHcfZdQy8X-cDffTLCW",    //文章id
+                "title": "12",
+                "body": "12"
+            }
+        ]
+    }
 }
