@@ -27,6 +27,7 @@ public class FilterHtmlUtil {
             p_html = Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
             m_html = p_html.matcher(htmlStr);
             htmlStr = m_html.replaceAll(""); //过滤html标签
+            System.out.println(htmlStr);
             textStr = htmlStr;
         }catch(Exception e){
             e.printStackTrace();
