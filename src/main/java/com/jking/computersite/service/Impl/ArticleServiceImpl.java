@@ -46,7 +46,7 @@ public class ArticleServiceImpl implements ArticleService {
         Map<String ,Object> map = new LinkedHashMap<>();
         for (int i=0;i<6;i++){
             List<Article> articleList = getArticleList("index",""+i,0,8);
-            map.put("part"+i, articleList);
+            map.put(""+i, articleList);
         }
         return map;
     }
