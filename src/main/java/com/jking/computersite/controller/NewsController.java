@@ -26,9 +26,9 @@ public class NewsController {
 
 @ResponseBody
 @PostMapping("/update/{id}")
-  public  ResultVO update(@RequestParam(required = false)String title, @RequestParam(required = false)String author,
+  public  ResultVO update(@RequestParam Integer id,@RequestParam(required = false)String title, @RequestParam(required = false)String author,
                           @RequestParam(required = false)String auditor, @RequestParam(required = false)String content,
-                          @RequestParam(required = false)MultipartFile file,@RequestParam Integer id)
+                          @RequestParam(required = false)MultipartFile file)
 {
     news News_Sql=newsService.Find(id);
     if (file!=null && !file.isEmpty()){
