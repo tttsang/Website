@@ -1,55 +1,33 @@
 package com.jking.computersite.entity;
 
-import java.util.List;
+public class Catalogue {
+    private String id;
 
-public class catalogue {
-    private Integer id;
+    private String firstLevel;
 
-    private Integer arId;
+    private String secondLevel;
 
-    private String fLevel;
-
-    private String sLevel;
-
-    private List<news> list;
-
-    public List<news> getList() {
-        return list;
-    }
-
-    public void setList(List<news> list) {
-        this.list = list;
-    }
-
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public Integer getArId() {
-        return arId;
+    public String getFirstLevel() {
+        return firstLevel;
     }
 
-    public void setArId(Integer arId) {
-        this.arId = arId;
+    public void setFirstLevel(String firstLevel) {
+        this.firstLevel = firstLevel == null ? null : firstLevel.trim();
     }
 
-    public String getfLevel() {
-        return fLevel;
+    public String getSecondLevel() {
+        return secondLevel;
     }
 
-    public void setfLevel(String fLevel) {
-        this.fLevel = fLevel == null ? null : fLevel.trim();
-    }
-
-    public String getsLevel() {
-        return sLevel;
-    }
-
-    public void setsLevel(String sLevel) {
-        this.sLevel = sLevel == null ? null : sLevel.trim();
+    public void setSecondLevel(String secondLevel) {
+        this.secondLevel = secondLevel == null ? null : secondLevel.trim();
     }
 }

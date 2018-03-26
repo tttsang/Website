@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 版本号: v0.1.0
  * 
  * 版本更新说明: 更改了修改密码接口
@@ -80,6 +80,7 @@
 /**
  * 3.园丁谱模块
  * 测试页面: http://bingexxx.net/test/powerGarden.html
+ * major说明: 1 表示 计科, 2 表示 软件, 3 表示 信管, 4 表示 信计, 5 表示 物联网
  */
 
 //获取所有教授列表    GET   http://bingexxx.net/api/powerGarden/
