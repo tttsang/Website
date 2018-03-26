@@ -56,11 +56,11 @@ public class ArticleServiceImpl implements ArticleService {
             article.setAuditor(null);
             article.setAuthor(null);
             article.setContent(null);
-            if (article.getIsshow() == 1){
-                article.setTime(null);
-            }else {
-                article.setPictureUrl(null);
-            }
+//            if (article.getIsshow() == 1){
+//                article.setTime(null);
+//            }else {
+//                article.setPictureUrl(null);
+//            }
             article.setIsshow(null);
         }
 
