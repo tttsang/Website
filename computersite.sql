@@ -38,3 +38,12 @@ CREATE TABLE n_catalogue(
   `s_level` INT(11) NULL,
   PRIMARY KEY (`id`));
 
+CREATE TABLE t_situation_leader (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  telephone VARCHAR(45) NULL,
+  work  VARCHAR(45) NULL,
+  location VARCHAR(45) NULL,
+  email VARCHAR(45) NULL,
+  pictureurl varchar(255) NOT NULL,
+  PRIMARY KEY (id));
