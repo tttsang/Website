@@ -8,6 +8,8 @@ import com.jking.computersite.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private CatalogueMapper catalogueMapper;
+
+    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
 
     @Override
     public Map<String, Object> find(String first, String second,int page,int pageSize) {

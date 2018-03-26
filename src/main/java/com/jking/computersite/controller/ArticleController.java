@@ -29,10 +29,10 @@ public class ArticleController {
     @GetMapping("/{first}/{second}")
     public ResultVO getList(@PathVariable String first,
                         @PathVariable String second,
-                        @RequestParam(required = false, defaultValue = "1") int page,
+                        @RequestParam(required = false, defaultValue = "1") int currentPage,
                         @RequestParam(required = false, defaultValue = "15") int pageSize
                         ){
-        return ResultVOUtil.success(articleService.find(first,second,page-1,pageSize));
+        return ResultVOUtil.success(articleService.find(first,second,currentPage-1,pageSize));
     }
 
     @ResponseBody

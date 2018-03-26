@@ -16,6 +16,9 @@ spring:
         host: 119.29.143.31
         port: 6379
         password: binge123
+    jackson:
+        serialization:
+            write-dates-as-timestamps: true
 
 mybatis:
     mapperLocations: classpath:mapper/*.xml

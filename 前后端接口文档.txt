@@ -150,3 +150,56 @@
         ]
     }
 }
+
+/**
+ * 5. 文章模块
+ * 测试页面:
+ */
+ //首页初始化     Get       http://bingexxx.net/api/article/indexInit
+{
+    "code": 0,
+    "message": "成功",
+    "data": {
+        "part0": [
+            {
+                "id": "1",
+                "title": "1",
+                "pictureUrl": "1"
+            }
+        ],
+        "part1": [],
+        "part2": [],
+        "part3": [],
+        "part4": [],
+        "part5": []
+    }
+}
+//文章列表获取     Get       http://bingexxx.net/api/article/index/1
+{
+    "code": 0,
+    "message": "成功",
+    "data": {
+         "pageList": [
+             {
+                 "id": "2",
+                 "time": 1522062234000,
+                 "title": "22"
+             }
+         ],
+         "totalItem": 1,
+         "totalPage": 0
+    }
+}
+//文章详情获取     Get       http://bingexxx.net/api/article/1
+{
+    "code": 0,
+    "message": "成功",
+    "data": {
+        "id": "1",
+        "time": 1522056551000,
+        "title": "1",
+        "author": "1",
+        "auditor": "1",
+        "content": "1"
+    }
+}
