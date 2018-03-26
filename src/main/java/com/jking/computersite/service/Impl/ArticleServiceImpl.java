@@ -23,8 +23,6 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private CatalogueMapper catalogueMapper;
 
-    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-
     @Override
     public Map<String, Object> find(String first, String second,int page,int pageSize) {
         int count = catalogueMapper.count(first,second);
