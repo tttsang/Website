@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <base href="http://localhost:8080/" />
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <div class="input-group">
+        <span class="input-group-addon">名称: </span>
+        <input type="text" class="form-control" id="name" value="">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">id: </span>
+        <input type="text" class="form-control" id="id" value="">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">工作: </span>
+        <input type="text" class="form-control" id="work" value="">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">地址: </span>
+        <input type="text" class="form-control" id="location" value="">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">电话: </span>
+        <input type="text" class="form-control" id="telephone" value="">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">邮箱: </span>
+        <input type="text" class="form-control" id="email" value="">
+    </div>
+    <input type="file" id="file" name="file" accept="image/*">
+    <button type="button" class="btn btn-info" id="find">查找一位老师</button>
+    <button type="button" class="btn btn-info" id="post">添加老师</button>
+    <button type="button" class="btn btn-info" id="getAll">获取所有</button>
+    <button type="button" class="btn btn-info" id="update">更新</button>
+    <button type="button" class="btn btn-info" id="delete">删除</button>
+    <div class="hr"></div>
+</div>
+<script>
+    $(function(){
+        // 获取所有
+        $("#getAll").click(function () {
+            var url="situ/All?p=1";
+            MyAjax('Get',url);
+        })
+        //查找教师信息
+        $("#find").click(function(){
+            var url='situ/'+$("#id").val();
+            MyAjax('Get',url);
+        })
+        //添加老师信息
+        $("#post").click(function(){
+            var data =new FormData();
+            data.append("file", $('#file')[0].files[0]);
+            data.append("name", $('#name').val());
+            data.append("name", $('#work').val());
+            data.append("name", $('#email').val());
+            data.append("name", $('#telephone').val());
+            data.append("name", $('#location').val());
+            MyAjax('Post','situ/',data);
+        })
+        $("#update").click(function(){
+            var data =new FormData();
+            data.append("file", $('#file')[0].files[0]);
+            data.append("name", $('#name').val());
+            data.append("name", $('#work').val());
+            data.append("name", $('#email').val());
+            data.append("name", $('#telephone').val());
+            data.append("name", $('#location').val());
+            var url ='situ/update/'+$("#id").val();
+            MyAjax('Post',url,data);
+        })
+        $("#delete").click(function(){
+            var url='situ/'+$("#id").val();
+            MyAjax('Delete',url);
+        })
+
+    })
+    function MyAjax(type, url, data, success) {
+        $.ajax({
+            type: type,
+            url: url,
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (res) {
+                console.log(res)
+                if(res.code == 0){
+                    success && success(res);
+                }
+            },
+            error: function (res) {
+                alert(JSON.stringify(res))
+                console.log(res)
+            },
+            xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true
+        });
+    }
+</script>
+
+<style>
+    .hr {
+        height: 3px;
+        background: #333333;
+        margin: 10px 0;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jking.computersite.mapper.SituMapper" >
+    <resultMap id="BaseResultMap" type="com.jking.computersite.entity.Situ" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+        <result column="work" property="work" jdbcType="VARCHAR" />
+        <result column="location" property="location" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="pictureurl" property="pictureurl" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, name, telephone, work, location, email, pictureurl
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from t_situation_leader
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from t_situation_leader
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.jking.computersite.entity.Situ" >
+        insert into t_situation_leader (id, name, telephone,
+        work, location, email,
+        pictureurl)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR},
+        #{work,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+        #{pictureurl,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.jking.computersite.entity.Situ" >
+        insert into "t_situation_leader"
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="telephone != null" >
+                telephone,
+            </if>
+            <if test="work != null" >
+                work,
+            </if>
+            <if test="location != null" >
+                location,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="pictureurl != null" >
+                pictureurl,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null" >
+                #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="work != null" >
+                #{work,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null" >
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="pictureurl != null" >
+                #{pictureurl,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jking.computersite.entity.Situ" >
+        update  t_situation_leader
+        <set >
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="telephone != null" >
+                telephone = #{telephone,jdbcType=VARCHAR},
+            </if>
+            <if test="work != null" >
+                work = #{work,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null" >
+                location = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="pictureurl != null" >
+                pictureurl = #{pictureurl,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jking.computersite.entity.Situ" >
+        update "t_situation_leader"
+        set name = #{name,jdbcType=VARCHAR},
+        telephone = #{telephone,jdbcType=VARCHAR},
+        work = #{work,jdbcType=VARCHAR},
+        location = #{location,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        pictureurl = #{pictureurl,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from t_situation_leader
+    </select>
+</mapper>

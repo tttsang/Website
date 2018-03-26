@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jking.computersite.mapper.catalogueMapper" >
+  <resultMap id="BaseResultMap" type="com.jking.computersite.entity.catalogue" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ar_id" property="arId" jdbcType="INTEGER" />
+    <result column="f_level" property="fLevel" jdbcType="VARCHAR" />
+    <result column="s_level" property="sLevel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ar_id, f_level, s_level
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from n_catalogue
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from n_catalogue
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jking.computersite.entity.catalogue" >
+    insert into n_catalogue (id, ar_id, f_level, 
+      s_level)
+    values (#{id,jdbcType=INTEGER}, #{arId,jdbcType=INTEGER}, #{fLevel,jdbcType=VARCHAR}, 
+      #{sLevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jking.computersite.entity.catalogue" >
+    insert into n_catalogue
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="arId != null" >
+        ar_id,
+      </if>
+      <if test="fLevel != null" >
+        f_level,
+      </if>
+      <if test="sLevel != null" >
+        s_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="arId != null" >
+        #{arId,jdbcType=INTEGER},
+      </if>
+      <if test="fLevel != null" >
+        #{fLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="sLevel != null" >
+        #{sLevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jking.computersite.entity.catalogue" >
+    update n_catalogue
+    <set >
+      <if test="arId != null" >
+        ar_id = #{arId,jdbcType=INTEGER},
+      </if>
+      <if test="fLevel != null" >
+        f_level = #{fLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="sLevel != null" >
+        s_level = #{sLevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jking.computersite.entity.catalogue" >
+    update n_catalogue
+    set ar_id = #{arId,jdbcType=INTEGER},
+      f_level = #{fLevel,jdbcType=VARCHAR},
+      s_level = #{sLevel,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <resultMap id="NewsMap" type="com.jking.computersite.entity.catalogue">
+        <id column="id"  property="id"  />
+        <result column="ar_id" property="arId" />
+        <result column="f_level" property="fLevel" />
+        <result column="s_level" property="sLevel" />
+        <collection property="list" ofType="com.jking.computersite.entity.news" >
+            <id column="id"  property="id"  />
+            <result column="title" property="title" />
+            <result column="author" property="author" />
+            <result column="auditor" property="auditor" />
+            <result column="date" property="date" />
+            <result column="content" property="content" />
+            <result column="picture_url" property="pictureUrl"/>
+        </collection>
+    </resultMap>
+    <select id="Show"  resultMap="NewsMap">
+        select c.ar_id,e.title,e.picture_url from computersite.n_catalogue c,computersite. news e
+       limit 3;
+    </select>
+  <select id="Index" resultMap="NewsMap">
+    (select c.s_level,e.date,e.title  from computersite.n_catalogue c,computersite. news e where c.s_level=1 limit 8 )
+    union all (select c.s_level,e.date,e.title  from computersite.n_catalogue c,computersite. news e where c.s_level=2 limit 8)
+    union all (select c.s_level,e.date,e.title  from computersite.n_catalogue c,computersite. news e where c.s_level=3 limit 8)
+    union all (select c.s_level,e.date,e.title  from computersite.n_catalogue c,computersite. news e where c.s_level=4 limit 8)
+    union all (select c.s_level,e.date,e.title  from computersite.n_catalogue c,computersite. news e where c.s_level=5 limit 8)order by s_level;
+  </select>
+
+    <select id="Column" resultMap="NewsMap" parameterType="java.lang.Integer">
+    select c.ar_id,e.title,e.date  from computersite.n_catalogue c,computersite. news e
+     where c.s_level= #{id,jdbcType=INTEGER}
+    </select>
+</mapper>

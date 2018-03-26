@@ -169,7 +169,8 @@
 			<version>${elasticsearch.version}</version>
 		</dependency>
 
-        <!--<dependency>-->
+
+		<!--<dependency>-->
 			<!--<groupId>org.springframework.security</groupId>-->
 			<!--<artifactId>spring-security-web</artifactId>-->
 			<!--<version>${spring-security.version}</version>-->

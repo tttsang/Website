@@ -20,3 +20,13 @@ CREATE TABLE t_power_garden(
   major INTEGER NOT NULL,
   name varchar(10)
 );
+
+CREATE TABLE new_table(
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `date` DATE NULL,
+  `title` VARCHAR(45) NULL,
+  `author` VARCHAR(45) NULL,
+  `auditor` VARCHAR(45) NULL,
+  `content` VARCHAR(45) NULL,
+  `picture_url` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
