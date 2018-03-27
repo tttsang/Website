@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>首页图片上传</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <base href="http:/localhost:8080/" />
+    <base href="http://bingexxx.net/" />
     <meta http-equiv="Access-Control-Allow-Origin" content="*" />
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
@@ -31,7 +31,7 @@
         </div>
         <div class="input-group">
             <span class="input-group-addon">是否设置为首页展示: </span>
-            <input type="text" class="form-control" id="isShow" value="">
+            <input type="text" class="form-control" id="isshow" value="">
         </div>
         <input type="file" id="file" name="file" accept="image/*">
         <button type="button" class="btn btn-info" id="preview_btn">图片预览</button>
@@ -60,28 +60,12 @@
                 data.append("auditor", $('#auditor').val());
                 data.append("content", $('#content').val());
                 data.append("file", $('#file')[0].files[0]);
-                data.append("isShow", $('#isShow').val());
-                MyAjax('Post', 'localhost:8080/article', data);
-            })
-
-            // 获取所有
-            $("#getAll").click(function () {
-                MyAjax('Get', 'api/indexProfessor/');
-            })
-
-            // 更新
-            $("#update").click(function () {
-                var data = new FormData();
-                data.append("file", $('#file')[0].files[0]);
-                data.append("name", $('#name').val());
-                var url = 'api/indexProfessor/update/' + $("#id").val();
-                MyAjax('Post', url, data);
-            })
-
-            // 删除
-            $("#delete").click(function () {
-                var url = 'api/indexProfessor/' + $("#id").val();
-                MyAjax('Delete', url);
+                data.append("isshow", $('#isshow').val());
+                var publishTo = [];
+                publishTo.push("index-1");
+                publishTo.push("index-2");
+                data.append("publishTo", publishTo);
+                MyAjax('Post', 'api/article/', data);
             })
 
         })
@@ -129,4 +113,12 @@
     </style>
 </body>
 
+</html>
+
+<%@ page content="text/html; charset=UTF-8" %>
+<html>
+<body bgcolor = yellow>
+	<p>这是页面1
+	<%@include file = "leader.txt" %>
+</body>
 </html>

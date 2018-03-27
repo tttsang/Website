@@ -6,6 +6,7 @@ import com.jking.computersite.constant.UploadConstant;
 import com.jking.computersite.entity.Article;
 import com.jking.computersite.entity.Catalogue;
 import com.jking.computersite.service.ArticleService;
+import com.jking.computersite.service.CatalogueService;
 import com.jking.computersite.service.EsSearchService;
 import com.jking.computersite.utils.FileUtil;
 import com.jking.computersite.utils.ResultVOUtil;
@@ -22,6 +23,9 @@ public class ArticleController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private CatalogueService catalogueService;
 
     @Autowired
     private EsSearchService esSearchService;
@@ -47,16 +51,18 @@ public class ArticleController {
             article.setTitle(articleVO.getTitle());
             article.setPictureUrl(filePath);
             article.setIsshow(articleVO.getIsshow());
-            article.setContent(article.getContent());
-            article.setAuthor(article.getAuthor());
-            article.setAuditor(article.getAuditor());
-            List<Map<String,String>> publishTo = articleVO.getPublishTo();
-            for(Map<String, String> map: publishTo){
+            article.setContent(articleVO.getContent());
+            article.setAuthor(articleVO.getAuthor());
+            article.setAuditor(articleVO.getAuditor());
+            articleService.add(article);
+            List<String> publishTo = articleVO.getPublishTo();
+            for(String s: publishTo){
 
                 Catalogue catalogue = new Catalogue();
                 catalogue.setId(id);
-                catalogue.setFirstLevel(map.get("first_level"));
-                catalogue.setSecondLevel(map.get("second_level"));
+                catalogue.setFirstLevel(s.split("-")[0]);
+                catalogue.setSecondLevel(s.split("-")[1]);
+                catalogueService.add(catalogue);
 
             }
 

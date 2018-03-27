@@ -15,7 +15,7 @@ public class ArticleVO {
 
     private String content;
 
-    private List<Map<String,String>> publishTo;
+    private List<String> publishTo;
 
     public Integer getIsshow() {
         return isshow;
@@ -57,11 +57,11 @@ public class ArticleVO {
         this.content = content;
     }
 
-    public List<Map<String,String>> getPublishTo() {
+    public List<String> getPublishTo() {
         return publishTo;
     }
 
-    public void setPublishTo(List<Map<String,String>> publishTo) {
+    public void setPublishTo(List<String> publishTo) {
         this.publishTo = publishTo;
     }
 

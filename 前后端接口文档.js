@@ -213,13 +213,7 @@
     "content": "文章内容",
     "file": "xx",     //图片
     "publishTo": [
-        {
-            "first_level": "首页",
-            "second_level": "学院新闻"
-        },
-        {
-            "first_level": "学校概况",
-            "second_level": "大事件"
-        }
+        "index-1",
+        "index-2"
     ]
 }
