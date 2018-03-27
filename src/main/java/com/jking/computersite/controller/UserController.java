@@ -33,6 +33,7 @@ public class UserController{
 
     @PostMapping("login")
     public ResultVO login(User user, HttpServletResponse response){
+        System.out.println(user);
         //1. 判断账号密码是否正确
         userService.login(user);
 

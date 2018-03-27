@@ -1,7 +1,5 @@
 package com.jking.computersite.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class Article {
@@ -9,7 +7,6 @@ public class Article {
 
     private Integer isshow;
 
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
     private Date time;
 
     private String title;

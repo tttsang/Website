@@ -11,7 +11,11 @@ public interface ArticleService {
 
     Map<String,Object> init();
 
-    List<Article> getArticleList(String first,String second,int page,int pageSize);
+    List<Article> getArticleList(String first, String second, int page, int pageSize);
 
     Article getArticle(String id);
+
+    void delete(String id);
+
+    void add(Article article);
 }

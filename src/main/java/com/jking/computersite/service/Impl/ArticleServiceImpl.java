@@ -3,13 +3,10 @@ package com.jking.computersite.service.Impl;
 import com.jking.computersite.entity.Article;
 import com.jking.computersite.mapper.ArticleMapper;
 import com.jking.computersite.mapper.CatalogueMapper;
-import com.jking.computersite.mapper.IndexProfessorMapper;
 import com.jking.computersite.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +70,16 @@ public class ArticleServiceImpl implements ArticleService {
         article.setIsshow(null);
         article.setPictureUrl(null);
         return article;
+    }
+
+    @Override
+    public void delete(String id) {
+        articleMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void add(Article article) {
+        articleMapper.insert(article);
     }
 
 

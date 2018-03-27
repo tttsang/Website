@@ -203,3 +203,23 @@
         "content": "1"
     }
 }
+
+//文章发布     Post       http://bingexxx.net/api/article/
+{
+    "isShow": 1,          //1表示发布到首页轮播图
+    "title": "xxx",
+    "author": "作者",
+    "auditor": "审核人",
+    "content": "文章内容",
+    "file": "xx",     //图片
+    "publishTo": [
+        {
+            "first_level": "首页",
+            "second_level": "学院新闻"
+        },
+        {
+            "first_level": "学校概况",
+            "second_level": "大事件"
+        }
+    ]
+}
