@@ -79,7 +79,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void add(Article article) {
-        articleMapper.insert(article);
+        articleMapper.insertSelective(article);
     }
 
 

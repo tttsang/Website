@@ -34,39 +34,36 @@ public class ArticleController {
     @PostMapping("/")
     public ResultVO add(ArticleVO articleVO,@RequestParam(required = false)  MultipartFile file){
         System.out.println(articleVO);
-        if (articleVO.getIsshow() == 1){
+        Article article = new Article();
+        if (articleVO.getIsshow()!=null && articleVO.getIsshow() == 1) {
             FileUtil.isImage(file);
             String extension = FileUtil.getExtension(file);
-            String filePath = UploadConstant.INDEXPROFESSOR + UUID.randomUUID() + "." +extension;
-
-            //同步到ES中
-//            String id = esSearchService.add(articleVO.getTitle(),articleVO.getContent());
-            String id = new Date().getTime() + "";
+            String filePath = UploadConstant.INDEXPROFESSOR + UUID.randomUUID() + "." + extension;
 
             //保存图片
-            FileUtil.saveFile(file,UploadConstant.PUBLIC + filePath);
+            FileUtil.saveFile(file, UploadConstant.PUBLIC + filePath);
             //保存到数据库
-            Article article = new Article();
-            article.setId(id);
-            article.setTitle(articleVO.getTitle());
             article.setPictureUrl(filePath);
-            article.setIsshow(articleVO.getIsshow());
-            article.setContent(articleVO.getContent());
-            article.setAuthor(articleVO.getAuthor());
-            article.setAuditor(articleVO.getAuditor());
-            articleService.add(article);
-            List<String> publishTo = articleVO.getPublishTo();
-            for(String s: publishTo){
-
-                Catalogue catalogue = new Catalogue();
-                catalogue.setId(id);
-                catalogue.setFirstLevel(s.split("-")[0]);
-                catalogue.setSecondLevel(s.split("-")[1]);
-                catalogueService.add(catalogue);
-
-            }
-
         }
+        //同步到ES中
+//      String id = esSearchService.add(articleVO.getTitle(),articleVO.getContent());
+        String id = new Date().getTime() + "";
+        article.setId(id);
+        article.setTitle(articleVO.getTitle());
+        article.setIsshow(articleVO.getIsshow());
+        article.setContent(articleVO.getContent());
+        article.setAuthor(articleVO.getAuthor());
+        article.setAuditor(articleVO.getAuditor());
+        articleService.add(article);
+        List<String> publishTo = articleVO.getPublishTo();
+        for(String s: publishTo){
+            Catalogue catalogue = new Catalogue();
+            catalogue.setId(id);
+            catalogue.setFirstLevel(s.split("-")[0]);
+            catalogue.setSecondLevel(s.split("-")[1]);
+            catalogueService.add(catalogue);
+        }
+
         return ResultVOUtil.success();
     }
 
