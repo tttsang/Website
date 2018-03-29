@@ -69,14 +69,12 @@ public class LoginAspect {
         //3. 查询cookie
         Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
         if (cookie == null){
-            log.warn("【登录校验】Cookie中查不到token, 访问的ip为" + request.getRequestURI());
             throw new MyException(UserEnums.LOGIN_ERROR);
         }
 
         //4 去redis查找token
         String redis_token = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PRFIX,cookie.getValue()));
         if (StringUtils.isEmpty(redis_token)){
-            log.warn("【登录校验】redis中查不到token, 访问的ip为" + request.getRequestURI());
             throw new MyException(UserEnums.LOGIN_ERROR);
         }
 
