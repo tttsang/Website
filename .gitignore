@@ -24,4 +24,4 @@ nbdist/
 .nb-gradle/
 
 ### image ###
-src\main\resources\static
+src/main/resources/static
