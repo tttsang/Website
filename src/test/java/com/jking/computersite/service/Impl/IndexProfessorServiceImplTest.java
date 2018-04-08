@@ -1,5 +1,6 @@
 package com.jking.computersite.service.Impl;
 
+import com.jking.computersite.service.ArticleService;
 import com.jking.computersite.service.IndexProfessorService;
 import com.jking.computersite.entity.IndexProfessor;
 import org.junit.Test;
@@ -15,12 +16,12 @@ public class IndexProfessorServiceImplTest {
     @Autowired
     private IndexProfessorService indexProfessorService;
 
+    @Autowired
+    private ArticleService articleService;
+
     @Test
     public void test(){
-        IndexProfessor indexProfessor = new IndexProfessor();
-        indexProfessor.setName("钟");
-        indexProfessor.setPictureurl("...");
-        indexProfessorService.add(indexProfessor);
+        articleService.test();
     }
 
 }

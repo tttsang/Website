@@ -18,4 +18,6 @@ public interface ArticleService {
     void delete(String id);
 
     void add(Article article);
+
+    void test();
 }

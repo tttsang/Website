@@ -52,7 +52,7 @@
     *
     from t_article
     where id in (
-      select id from t_catalogue where first_level = #{first_level,jdbcType=VARCHAR} and second_level = #{second_level,jdbcType=VARCHAR} ) limit #{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
+      select id from t_catalogue where first_level = #{first_level,jdbcType=VARCHAR} and second_level = #{second_level,jdbcType=VARCHAR}) order by time DESC limit #{start,jdbcType=INTEGER},#{size,jdbcType=INTEGER}
   </select>
   <select id="count" resultType="java.lang.Integer" parameterType="com.jking.computersite.entity.Catalogue" >
     select
