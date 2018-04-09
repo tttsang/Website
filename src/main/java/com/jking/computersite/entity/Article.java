@@ -9,7 +9,7 @@ public class Article {
 
     private Integer isshow;
 
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @JsonFormat(timezone = "GMT+8", pattern = "MM-dd")
     private Date time;
 
     private String title;

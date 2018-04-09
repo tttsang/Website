@@ -190,7 +190,7 @@
          "totalPage": 0
     }
 }
-//文章详情获取     Get       http://bingexxx.net/api/article/1
+//文章详情获取     Get       http://bingexxx.net/api/article/{id}
 {
     "code": 0,
     "message": "成功",
