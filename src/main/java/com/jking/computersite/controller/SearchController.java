@@ -16,11 +16,11 @@ public class SearchController {
     @ResponseBody
     @GetMapping("/search")
     public ResultVO search(String keyword,
-                           @RequestParam(required = false,defaultValue = "1") int page,
+                           @RequestParam(required = false,defaultValue = "1") int currentPage,
                            @RequestParam(required = false,defaultValue = "10") int pageSize,
                            @RequestParam(required = false, defaultValue = "200") int wordSize){
 
-        return ResultVOUtil.success(searchService.search(keyword,page,pageSize,wordSize));
+        return ResultVOUtil.success(searchService.search(keyword,currentPage,pageSize,wordSize));
     }
 
 }

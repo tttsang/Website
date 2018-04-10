@@ -7,25 +7,28 @@ spring:
             maxFileSize: 100Mb
             maxRequestSize: 1000Mb
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/computersite
+        url: jdbc:mysql://120.79.53.184:3306/computersite
         username: root
-        password: 4747
+        password: 123456Abc!
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
     redis:
         host: 119.29.143.31
         port: 6379
         password: binge123
+    jackson:
+        serialization:
+            write-dates-as-timestamps: true
 
 mybatis:
     mapperLocations: classpath:mapper/*.xml
     type-aliases-package: com.jking.computersite.entity
-    configuration:
-        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    configuration:
+#        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-logging:
-    level:
-        com.jking.computersite.mapper: trace # 改成你的mapper文件所在包路径
+#logging:
+#    level:
+#        com.jking.computersite.mapper: trace # 改成你的mapper文件所在包路径
 
 pagehelper:
   helper-dialect: mysql

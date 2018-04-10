@@ -1,13 +1,16 @@
 package com.jking.computersite.entity;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class news {
-    private Integer id;
+import java.util.Date;
 
-    private String date;
+public class Article {
+    private String id;
+
+    private Integer isshow;
+
+    @JsonFormat(timezone = "GMT+8", pattern = "MM-dd")
+    private Date time;
 
     private String title;
 
@@ -19,25 +22,28 @@ public class news {
 
     private String pictureUrl;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
-    public String getDate() {
-        return date;
+    public Integer getIsshow() {
+        return isshow;
     }
 
-    public void setDate(String date) throws ParseException {
-        ObjectMapper mapper = new ObjectMapper();
-        // 添加功能，让时间格式更具有可读性
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        mapper.setDateFormat(dateFormat);
-        dateFormat.parse(date);
-        this.date = date;
+    public void setIsshow(Integer isshow) {
+        this.isshow = isshow;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public String getTitle() {

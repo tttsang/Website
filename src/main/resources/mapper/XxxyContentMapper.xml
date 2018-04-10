@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jking.computersite.mapper.XxxyContentMapper" >
+  <resultMap id="BaseResultMap" type="com.jking.computersite.entity.XxxyContent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="TINYINT" />
+    <result column="sectionid" property="sectionid" jdbcType="INTEGER" />
+    <result column="mask" property="mask" jdbcType="INTEGER" />
+    <result column="catid" property="catid" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="VARCHAR" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="modified" property="modified" jdbcType="VARCHAR" />
+    <result column="modified_by" property="modifiedBy" jdbcType="INTEGER" />
+    <result column="checked_out" property="checkedOut" jdbcType="INTEGER" />
+    <result column="checked_out_time" property="checkedOutTime" jdbcType="VARCHAR" />
+    <result column="publish_up" property="publishUp" jdbcType="VARCHAR" />
+    <result column="publish_down" property="publishDown" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="ordering" property="ordering" jdbcType="INTEGER" />
+    <result column="access" property="access" jdbcType="INTEGER" />
+    <result column="hits" property="hits" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jking.computersite.entity.XxxyContentWithBLOBs" extends="BaseResultMap" >
+    <result column="title" property="title" jdbcType="LONGVARCHAR" />
+    <result column="title_alias" property="titleAlias" jdbcType="LONGVARCHAR" />
+    <result column="introtext" property="introtext" jdbcType="LONGVARCHAR" />
+    <result column="fulltext" property="fulltext" jdbcType="LONGVARCHAR" />
+    <result column="created_by_alias" property="createdByAlias" jdbcType="LONGVARCHAR" />
+    <result column="images" property="images" jdbcType="LONGVARCHAR" />
+    <result column="urls" property="urls" jdbcType="LONGVARCHAR" />
+    <result column="attribs" property="attribs" jdbcType="LONGVARCHAR" />
+    <result column="metakey" property="metakey" jdbcType="LONGVARCHAR" />
+    <result column="metadesc" property="metadesc" jdbcType="LONGVARCHAR" />
+    <result column="metadata" property="metadata" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, alias, state, sectionid, mask, catid, created, created_by, modified, modified_by, 
+    checked_out, checked_out_time, publish_up, publish_down, version, parentid, ordering, 
+    access, hits
+  </sql>
+  <sql id="Blob_Column_List" >
+    title, title_alias, introtext, fulltext, created_by_alias, images, urls, attribs, 
+    metakey, metadesc, metadata
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    *
+    from xxxy_content
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select
+    *
+    from xxxy_content
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from xxxy_content
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jking.computersite.entity.XxxyContentWithBLOBs" >
+    insert into xxxy_content (id, alias, state, 
+      sectionid, mask, catid, 
+      created, created_by, modified, 
+      modified_by, checked_out, checked_out_time, 
+      publish_up, publish_down, version, 
+      parentid, ordering, access, 
+      hits, title, title_alias, 
+      introtext, fulltext, created_by_alias, 
+      images, urls, attribs, 
+      metakey, metadesc, metadata
+      )
+    values (#{id,jdbcType=INTEGER}, #{alias,jdbcType=VARCHAR}, #{state,jdbcType=TINYINT}, 
+      #{sectionid,jdbcType=INTEGER}, #{mask,jdbcType=INTEGER}, #{catid,jdbcType=INTEGER}, 
+      #{created,jdbcType=VARCHAR}, #{createdBy,jdbcType=INTEGER}, #{modified,jdbcType=VARCHAR}, 
+      #{modifiedBy,jdbcType=INTEGER}, #{checkedOut,jdbcType=INTEGER}, #{checkedOutTime,jdbcType=VARCHAR}, 
+      #{publishUp,jdbcType=VARCHAR}, #{publishDown,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{parentid,jdbcType=INTEGER}, #{ordering,jdbcType=INTEGER}, #{access,jdbcType=INTEGER}, 
+      #{hits,jdbcType=INTEGER}, #{title,jdbcType=LONGVARCHAR}, #{titleAlias,jdbcType=LONGVARCHAR}, 
+      #{introtext,jdbcType=LONGVARCHAR}, #{fulltext,jdbcType=LONGVARCHAR}, #{createdByAlias,jdbcType=LONGVARCHAR}, 
+      #{images,jdbcType=LONGVARCHAR}, #{urls,jdbcType=LONGVARCHAR}, #{attribs,jdbcType=LONGVARCHAR}, 
+      #{metakey,jdbcType=LONGVARCHAR}, #{metadesc,jdbcType=LONGVARCHAR}, #{metadata,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jking.computersite.entity.XxxyContentWithBLOBs" >
+    insert into xxxy_content
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="alias != null" >
+        alias,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="sectionid != null" >
+        sectionid,
+      </if>
+      <if test="mask != null" >
+        mask,
+      </if>
+      <if test="catid != null" >
+        catid,
+      </if>
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="modified != null" >
+        modified,
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by,
+      </if>
+      <if test="checkedOut != null" >
+        checked_out,
+      </if>
+      <if test="checkedOutTime != null" >
+        checked_out_time,
+      </if>
+      <if test="publishUp != null" >
+        publish_up,
+      </if>
+      <if test="publishDown != null" >
+        publish_down,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="ordering != null" >
+        ordering,
+      </if>
+      <if test="access != null" >
+        access,
+      </if>
+      <if test="hits != null" >
+        hits,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="titleAlias != null" >
+        title_alias,
+      </if>
+      <if test="introtext != null" >
+        introtext,
+      </if>
+      <if test="fulltext != null" >
+        fulltext,
+      </if>
+      <if test="createdByAlias != null" >
+        created_by_alias,
+      </if>
+      <if test="images != null" >
+        images,
+      </if>
+      <if test="urls != null" >
+        urls,
+      </if>
+      <if test="attribs != null" >
+        attribs,
+      </if>
+      <if test="metakey != null" >
+        metakey,
+      </if>
+      <if test="metadesc != null" >
+        metadesc,
+      </if>
+      <if test="metadata != null" >
+        metadata,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null" >
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="sectionid != null" >
+        #{sectionid,jdbcType=INTEGER},
+      </if>
+      <if test="mask != null" >
+        #{mask,jdbcType=INTEGER},
+      </if>
+      <if test="catid != null" >
+        #{catid,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        #{created,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="modified != null" >
+        #{modified,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null" >
+        #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="checkedOut != null" >
+        #{checkedOut,jdbcType=INTEGER},
+      </if>
+      <if test="checkedOutTime != null" >
+        #{checkedOutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="publishUp != null" >
+        #{publishUp,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDown != null" >
+        #{publishDown,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="ordering != null" >
+        #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="access != null" >
+        #{access,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="titleAlias != null" >
+        #{titleAlias,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="introtext != null" >
+        #{introtext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fulltext != null" >
+        #{fulltext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createdByAlias != null" >
+        #{createdByAlias,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="images != null" >
+        #{images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="urls != null" >
+        #{urls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attribs != null" >
+        #{attribs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metakey != null" >
+        #{metakey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metadesc != null" >
+        #{metadesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metadata != null" >
+        #{metadata,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jking.computersite.entity.XxxyContentWithBLOBs" >
+    update xxxy_content
+    <set >
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="sectionid != null" >
+        sectionid = #{sectionid,jdbcType=INTEGER},
+      </if>
+      <if test="mask != null" >
+        mask = #{mask,jdbcType=INTEGER},
+      </if>
+      <if test="catid != null" >
+        catid = #{catid,jdbcType=INTEGER},
+      </if>
+      <if test="created != null" >
+        created = #{created,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="modified != null" >
+        modified = #{modified,jdbcType=VARCHAR},
+      </if>
+      <if test="modifiedBy != null" >
+        modified_by = #{modifiedBy,jdbcType=INTEGER},
+      </if>
+      <if test="checkedOut != null" >
+        checked_out = #{checkedOut,jdbcType=INTEGER},
+      </if>
+      <if test="checkedOutTime != null" >
+        checked_out_time = #{checkedOutTime,jdbcType=VARCHAR},
+      </if>
+      <if test="publishUp != null" >
+        publish_up = #{publishUp,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDown != null" >
+        publish_down = #{publishDown,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="ordering != null" >
+        ordering = #{ordering,jdbcType=INTEGER},
+      </if>
+      <if test="access != null" >
+        access = #{access,jdbcType=INTEGER},
+      </if>
+      <if test="hits != null" >
+        hits = #{hits,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="titleAlias != null" >
+        title_alias = #{titleAlias,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="introtext != null" >
+        introtext = #{introtext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fulltext != null" >
+        fulltext = #{fulltext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createdByAlias != null" >
+        created_by_alias = #{createdByAlias,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="urls != null" >
+        urls = #{urls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="attribs != null" >
+        attribs = #{attribs,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metakey != null" >
+        metakey = #{metakey,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metadesc != null" >
+        metadesc = #{metadesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="metadata != null" >
+        metadata = #{metadata,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jking.computersite.entity.XxxyContentWithBLOBs" >
+    update xxxy_content
+    set alias = #{alias,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      sectionid = #{sectionid,jdbcType=INTEGER},
+      mask = #{mask,jdbcType=INTEGER},
+      catid = #{catid,jdbcType=INTEGER},
+      created = #{created,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      modified = #{modified,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=INTEGER},
+      checked_out = #{checkedOut,jdbcType=INTEGER},
+      checked_out_time = #{checkedOutTime,jdbcType=VARCHAR},
+      publish_up = #{publishUp,jdbcType=VARCHAR},
+      publish_down = #{publishDown,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      parentid = #{parentid,jdbcType=INTEGER},
+      ordering = #{ordering,jdbcType=INTEGER},
+      access = #{access,jdbcType=INTEGER},
+      hits = #{hits,jdbcType=INTEGER},
+      title = #{title,jdbcType=LONGVARCHAR},
+      title_alias = #{titleAlias,jdbcType=LONGVARCHAR},
+      introtext = #{introtext,jdbcType=LONGVARCHAR},
+      fulltext = #{fulltext,jdbcType=LONGVARCHAR},
+      created_by_alias = #{createdByAlias,jdbcType=LONGVARCHAR},
+      images = #{images,jdbcType=LONGVARCHAR},
+      urls = #{urls,jdbcType=LONGVARCHAR},
+      attribs = #{attribs,jdbcType=LONGVARCHAR},
+      metakey = #{metakey,jdbcType=LONGVARCHAR},
+      metadesc = #{metadesc,jdbcType=LONGVARCHAR},
+      metadata = #{metadata,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jking.computersite.entity.XxxyContent" >
+    update xxxy_content
+    set alias = #{alias,jdbcType=VARCHAR},
+      state = #{state,jdbcType=TINYINT},
+      sectionid = #{sectionid,jdbcType=INTEGER},
+      mask = #{mask,jdbcType=INTEGER},
+      catid = #{catid,jdbcType=INTEGER},
+      created = #{created,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      modified = #{modified,jdbcType=VARCHAR},
+      modified_by = #{modifiedBy,jdbcType=INTEGER},
+      checked_out = #{checkedOut,jdbcType=INTEGER},
+      checked_out_time = #{checkedOutTime,jdbcType=VARCHAR},
+      publish_up = #{publishUp,jdbcType=VARCHAR},
+      publish_down = #{publishDown,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      parentid = #{parentid,jdbcType=INTEGER},
+      ordering = #{ordering,jdbcType=INTEGER},
+      access = #{access,jdbcType=INTEGER},
+      hits = #{hits,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

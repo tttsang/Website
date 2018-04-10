@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jking.computersite.mapper.newsMapper" >
-  <resultMap id="BaseResultMap" type="com.jking.computersite.entity.news" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="date" property="date" jdbcType="DATE" />
+<mapper namespace="com.jking.computersite.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.jking.computersite.entity.Article" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="isShow" property="isshow" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="auditor" property="auditor" jdbcType="VARCHAR" />
@@ -11,34 +12,37 @@
     <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, date, title, author, auditor, content, picture_url
+    id, isShow, time, title, author, auditor, content, picture_url
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from news
-    where id = #{id,jdbcType=INTEGER}
+    from t_article
+    where id = #{id,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from news
-    where id = #{id,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_article
+    where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.jking.computersite.entity.news" >
-    insert into news (id, date, title, 
-      author, auditor, content, 
-      picture_url)
-    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=DATE}, #{title,jdbcType=VARCHAR}, 
-      #{author,jdbcType=VARCHAR}, #{auditor,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
-      #{pictureUrl,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.jking.computersite.entity.Article" >
+    insert into t_article (id, isShow, time, 
+      title, author, auditor, 
+      content, picture_url)
+    values (#{id,jdbcType=VARCHAR}, #{isshow,jdbcType=INTEGER}, #{time,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{auditor,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{pictureUrl,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jking.computersite.entity.news" >
-    insert into news
+  <insert id="insertSelective" parameterType="com.jking.computersite.entity.Article" >
+    insert into t_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="date != null" >
-        date,
+      <if test="isshow != null" >
+        isShow,
+      </if>
+      <if test="time != null" >
+        time,
       </if>
       <if test="title != null" >
         title,
@@ -58,10 +62,13 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id,jdbcType=VARCHAR},
       </if>
-      <if test="date != null" >
-        #{date,jdbcType=DATE},
+      <if test="isshow != null" >
+        #{isshow,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
@@ -80,11 +87,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jking.computersite.entity.news" >
-    update news
+  <update id="updateByPrimaryKeySelective" parameterType="com.jking.computersite.entity.Article" >
+    update t_article
     <set >
-      <if test="date != null" >
-        date = #{date,jdbcType=DATE},
+      <if test="isshow != null" >
+        isShow = #{isshow,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
       </if>
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
@@ -102,20 +112,17 @@
         picture_url = #{pictureUrl,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jking.computersite.entity.news" >
-    update news
-    set date = #{date,jdbcType=DATE},
+  <update id="updateByPrimaryKey" parameterType="com.jking.computersite.entity.Article" >
+    update t_article
+    set isShow = #{isshow,jdbcType=INTEGER},
+      time = #{time,jdbcType=TIMESTAMP},
       title = #{title,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
       auditor = #{auditor,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       picture_url = #{pictureUrl,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
   </update>
-  
-  <select id="Article" parameterType="java.lang.Integer" resultType="com.jking.computersite.entity.news">
-      select e.id,e.title,e.date,e.author,e.content from computersite. news e where e.id between (#{id,jdbcType=INTEGER}-1) and(#{id,jdbcType=INTEGER}+1);
-  </select>
 </mapper>

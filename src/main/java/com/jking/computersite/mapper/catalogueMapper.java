@@ -1,25 +1,17 @@
 package com.jking.computersite.mapper;
 
-import com.jking.computersite.entity.catalogue;
+import com.jking.computersite.entity.Article;
+import com.jking.computersite.entity.Catalogue;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface catalogueMapper {
-    int deleteByPrimaryKey(Integer id);
+public interface CatalogueMapper {
+    int insert(Catalogue record);
 
-    int insert(catalogue record);
+    int insertSelective(Catalogue record);
 
-    int insertSelective(catalogue record);
+    List<Article> find(@Param("first_level") String first_level, @Param("second_level") String second_level, @Param("start") int start, @Param("size") int size);
 
-    catalogue selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(catalogue record);
-
-    int updateByPrimaryKey(catalogue record);
-
-    List<catalogue>Show();
-
-    List<catalogue>Index();
-
-    List<catalogue> Column(Integer id);
+    int count(@Param("first_level") String first_level, @Param("second_level") String second_level);
 }
