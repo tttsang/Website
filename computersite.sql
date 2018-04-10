@@ -47,3 +47,20 @@ CREATE TABLE t_situation_leader (
   email VARCHAR(45) NULL,
   pictureurl varchar(255) NOT NULL,
   PRIMARY KEY (id));
+
+CREATE TABLE leader (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  ZhiCheng VARCHAR(45) NULL,
+  institution INT(11) NULL,
+  PRIMARY KEY (`id`));
+
+CREATE TABLE teacher (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(45) NULL,
+  teacherArea VARCHAR(45) NULL,
+  teacherPic VARCHAR(90) NULL,
+  achievement VARCHAR(1000) NULL,
+  zhicheng VARCHAR(45)NULL,
+  PRIMARY KEY (id));
+

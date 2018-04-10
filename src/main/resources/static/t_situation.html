@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <base href="http://localhost:8080/" />
+    <base href="http://bingexxx.net/" />
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
@@ -45,12 +45,12 @@
     $(function(){
         // 获取所有
         $("#getAll").click(function () {
-            var url="situ/All?p=1";
+            var url="api/situ/All?p=1";
             MyAjax('Get',url);
         })
         //查找教师信息
         $("#find").click(function(){
-            var url='situ/'+$("#id").val();
+            var url='api/situ/'+$("#id").val();
             MyAjax('Get',url);
         })
         //添加老师信息
@@ -62,7 +62,8 @@
             data.append("name", $('#email').val());
             data.append("name", $('#telephone').val());
             data.append("name", $('#location').val());
-            MyAjax('Post','situ/',data);
+            var url ='api/situ/';
+            MyAjax('Post',url,data);
         })
         $("#update").click(function(){
             var data =new FormData();
@@ -72,11 +73,11 @@
             data.append("name", $('#email').val());
             data.append("name", $('#telephone').val());
             data.append("name", $('#location').val());
-            var url ='situ/update/'+$("#id").val();
+            var url ='api/situ/update/'+$("#id").val();
             MyAjax('Post',url,data);
         })
         $("#delete").click(function(){
-            var url='situ/'+$("#id").val();
+            var url='api/situ/'+$("#id").val();
             MyAjax('Delete',url);
         })
 
