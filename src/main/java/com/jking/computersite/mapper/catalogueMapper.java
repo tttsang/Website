@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface CatalogueMapper {
+  public interface CatalogueMapper {
     int insert(Catalogue record);
 
     int insertSelective(Catalogue record);

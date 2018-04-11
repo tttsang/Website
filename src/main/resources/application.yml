@@ -7,9 +7,9 @@ spring:
             maxFileSize: 100Mb
             maxRequestSize: 1000Mb
     datasource:
-        url: jdbc:mysql://120.79.53.184:3306/computersite
+        url: jdbc:mysql://127.0.0.1/computersite
         username: root
-        password: 123456Abc!
+        password: 4747
         driver-class-name: com.mysql.jdbc.Driver
         type: com.alibaba.druid.pool.DruidDataSource
     redis:
