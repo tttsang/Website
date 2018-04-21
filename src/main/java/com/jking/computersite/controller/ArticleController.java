@@ -32,23 +32,26 @@ public class ArticleController {
 
     @ResponseBody
     @PostMapping("/")
-    public ResultVO add(ArticleVO articleVO,@RequestParam(required = false)  MultipartFile file){
+    public ResultVO add(ArticleVO articleVO){
         System.out.println(articleVO);
         Article article = new Article();
-        if (articleVO.getIsshow()!=null && articleVO.getIsshow() == 1) {
-            FileUtil.isImage(file);
-            String extension = FileUtil.getExtension(file);
-            String filePath = UploadConstant.INDEXPROFESSOR + UUID.randomUUID() + "." + extension;
+//        if (articleVO.getIsshow()!=null && articleVO.getIsshow() == 1) {
+//            FileUtil.isImage(file);
+//            String extension = FileUtil.getExtension(file);
+//            String filePath = UploadConstant.INDEXPROFESSOR + UUID.randomUUID() + "." + extension;
+//
+//            //保存图片
+//            FileUtil.saveFile(file, UploadConstant.PUBLIC + filePath);
+//            //保存到数据库
+//            article.setPictureUrl(filePath);
+//        }
 
-            //保存图片
-            FileUtil.saveFile(file, UploadConstant.PUBLIC + filePath);
-            //保存到数据库
-            article.setPictureUrl(filePath);
-        }
         //同步到ES中
 //      String id = esSearchService.add(articleVO.getTitle(),articleVO.getContent());
+
         String id = new Date().getTime() + "";
         article.setId(id);
+        article.setIsshow(articleVO.getIsshow());
         article.setTitle(articleVO.getTitle());
         article.setIsshow(articleVO.getIsshow());
         article.setContent(articleVO.getContent());
