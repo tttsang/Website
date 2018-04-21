@@ -15,6 +15,7 @@
     <result column="auditor" property="auditor" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
   </resultMap>
   <insert id="insert" parameterType="com.jking.computersite.entity.Catalogue" >
     insert into t_catalogue (id, first_level, second_level
