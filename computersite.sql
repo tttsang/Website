@@ -21,7 +21,6 @@ CREATE TABLE t_power_garden(
   name varchar(10)
 );
 
-<<<<<<< HEAD
 CREATE TABLE news(
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` VARCHAR(45) NULL,
@@ -65,17 +64,6 @@ CREATE TABLE teacher (
   zhicheng VARCHAR(45)NULL,
   PRIMARY KEY (id));
 
-=======
-CREATE TABLE t_article(
-  id VARCHAR(45) PRIMARY KEY,
-  isShow int,
-  time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  title VARCHAR(45),
-  author VARCHAR(45),
-  auditor VARCHAR(45),
-  content VARCHAR(4500),
-  picture_url VARCHAR(45)
-);
 
 CREATE TABLE t_article(
   id VARCHAR(45) PRIMARY KEY,
@@ -85,7 +73,8 @@ CREATE TABLE t_article(
   author VARCHAR(45),
   auditor VARCHAR(45),
   content VARCHAR(10240),
-  picture_url VARCHAR(512)
+  picture_url VARCHAR(512),
+  status int
 );
 
 CREATE TABLE t_catalogue(
@@ -93,4 +82,3 @@ CREATE TABLE t_catalogue(
   first_level VARCHAR(45),
   second_level VARCHAR(45)
 );
->>>>>>> 256adf3220708dee596c40b108b320c5bd078ba9

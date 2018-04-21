@@ -1,7 +1,5 @@
 package com.jking.computersite.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.util.Date;
 
 public class Article {
@@ -9,7 +7,6 @@ public class Article {
 
     private Integer isshow;
 
-    @JsonFormat(timezone = "GMT+8", pattern = "MM-dd")
     private Date time;
 
     private String title;
@@ -21,6 +18,8 @@ public class Article {
     private String content;
 
     private String pictureUrl;
+
+    private Integer status;
 
     public String getId() {
         return id;
@@ -84,5 +83,13 @@ public class Article {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl == null ? null : pictureUrl.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

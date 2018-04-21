@@ -4,16 +4,12 @@ import com.jking.computersite.entity.Article;
 import com.jking.computersite.entity.Catalogue;
 import com.jking.computersite.entity.XxxyContentWithBLOBs;
 import com.jking.computersite.mapper.ArticleMapper;
-import com.jking.computersite.mapper.CatalogueMapper;
 import com.jking.computersite.mapper.XxxyContentMapper;
 import com.jking.computersite.service.ArticleService;
-import com.jking.computersite.service.CatalogueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +38,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         map.put("pageList",articleList);
         map.put("totalItem", count);
-        map.put("totalPage", count/pageSize);
+        map.put("totalPage", totalPage);
         return map;
     }
 
@@ -64,15 +60,8 @@ public class ArticleServiceImpl implements ArticleService {
             article.setAuditor(null);
             article.setAuthor(null);
             article.setContent(null);
-//            if (article.getIsshow() == 1){
-//                article.setTime(null);
-//            }else {
-//                article.setPictureUrl(null);
-//            }
             article.setIsshow(null);
         }
-        //select id from t_article where id in (select id from t_catalogue where first_level = 'situation' and second_level = '3') limit 0,15
-        //
         return articleList;
     }
 
