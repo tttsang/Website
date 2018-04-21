@@ -4,7 +4,6 @@ import com.jking.computersite.entity.Article;
 import com.jking.computersite.entity.Catalogue;
 import com.jking.computersite.entity.XxxyContentWithBLOBs;
 import com.jking.computersite.mapper.ArticleMapper;
-import com.jking.computersite.mapper.CatalogueMapper;
 import com.jking.computersite.mapper.XxxyContentMapper;
 import com.jking.computersite.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
