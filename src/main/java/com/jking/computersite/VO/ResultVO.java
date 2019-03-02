@@ -3,6 +3,8 @@ package com.jking.computersite.VO;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
+import javax.servlet.http.Cookie;
+
 @Data
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ResultVO<T> {
@@ -39,4 +41,5 @@ public class ResultVO<T> {
     public void setData(T data) {
         this.data = data;
     }
+
 }

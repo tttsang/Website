@@ -74,6 +74,7 @@ public class IndexProfessorController {
         return ResultVOUtil.success();
     }
 
+
     @ResponseBody
     @DeleteMapping("/{id}")
     public ResultVO delete(@PathVariable Integer id){
